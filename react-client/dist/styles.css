@@ -1,0 +1,21 @@
+.topBar {
+	padding: 2px;
+}
+
+.TwitchPlayer {
+
+}
+.main {
+	background-color: BlueViolet;
+}
+
+body {
+	padding: 2px;
+	background-color: black;
+}
+
+.stream {
+	float: none;
+    margin: 0 auto;
+     display: inline-block;
+}

@@ -4,22 +4,32 @@ var bodyParser = require('body-parser');
 // var items = require('../database-mysql');
 // var items = require('../database-mongo');
 
+var twitchData = require('./twitchData.js');
+var request = require('request');
+
+
+
 var app = express();
-
 // UNCOMMENT FOR REACT
-// app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(__dirname + '/../react-client/dist'));
 
-// UNCOMMENT FOR ANGULAR
-// app.use(express.static(__dirname + '/../angular-client'));
-// app.use(express.static(__dirname + '/../node_modules'));
+app.get('/', function (req, res) {
+  res.status(200);
+  res.send();
+  
+});
 
-app.get('/items', function (req, res) {
-  items.selectAll(function(err, data) {
-    if(err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
+app.get('/streamerList', (req, res) => {
+
+  var options = {
+    url: 'https://api.twitch.tv/helix/streams?first=15',
+    headers: {'Client-ID': '7fat6yyl6puo9pjt6eypzfciu04pyj'}
+  };
+  //request to twitch
+  request(options, function (err, response, body) {
+    console.log('got names!', JSON.parse(body))
+    res.status(200);
+    res.send(JSON.parse(body));
   });
 });
 
