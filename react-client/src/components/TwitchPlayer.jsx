@@ -37,25 +37,25 @@ class TwitchPlayer extends React.Component {
   render() {
     return (
       <div className = "container-fluid TwitchPlayer">
-          {console.log('------------', this.state.chatResize)}
+          {console.log('------------', this.props.screenSize[0])}
 
-          <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle"
-              type="button" id="dropdownMenu1" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Live Streamers
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-            {this.props.streamerList.map((el, index) => <a onClick= {()=> this.setState({streamer: el})} className="dropdown-item" key = {index}>{el}</a>)}
-            </div>
-            {console.log('thahthtehaehe', this.props)}
-            <button type="button" className="btn btn-info">{this.state.streamer}</button>
-            {this.props.singleScreen ? <button onClick = {() => this.addChat()} type="button" className="btn btn-info">{this.state.chatText}</button> : <div></div>}
-          </div>
+          {this.props.info ? <div className="dropdown">
+                      <button className="btn btn-secondary dropdown-toggle"
+                        type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Live Streamers
+                      </button>
+                      <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      {this.props.streamerList.map((el, index) => <a onClick= {()=> this.setState({streamer: el})} className="dropdown-item" key = {index}>{el}</a>)}
+                      </div>
+                      {console.log('thahthtehaehe', this.props)}
+                      <button type="button" className="btn btn-info">{this.state.streamer}</button>
+                      {this.props.singleScreen ? <button onClick = {() => this.addChat()} type="button" className="btn btn-info">{this.state.chatText}</button> : <div></div>}
+                    </div> : <div></div>}
         <iframe className = 'stream'
           src={`https://player.twitch.tv/?channel=${this.state.streamer}`}
           frameBorder='0'
-          height={this.props.screenSize[0]}
+          height={this.props.info ? (this.props.screenSize[0] - 30) + 'px': this.props.screenSize[0] + 'px'}
           width={this.state.chat ? '850' : this.props.screenSize[1]}
           allowFullScreen='true'
         >
@@ -66,7 +66,7 @@ class TwitchPlayer extends React.Component {
                 scrolling="no" 
                 id="chat_embed" 
                 src={`https://www.twitch.tv/${this.state.streamer}/chat`}
-                height = "570"
+                height={this.props.info ? (this.props.screenSize[0] - 30) + 'px': this.props.screenSize[0] + 'px'}
                 width="350">
         </iframe> : 
         <div></div>

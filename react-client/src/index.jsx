@@ -15,15 +15,18 @@ class App extends React.Component {
       items: [],
       //hieght width
       numberOfScreens: 'one',
+      info: false,
       screenSize: {
-        one: ['570px', '1250px'],
-        two: ['560px', '650px'],
-        four: ['330px', '620px']
+        //change height based on info being shown or not (+- 30px i think)
+        one: [600, '1250px'],
+        two: [600, '650px'],
+        four: [330, '620px']
       },
 
       streamerList: ['Shiphtur','scarra','c9sneaky', 'imaqtpie']
     };
     this.numberOfScreens = this.numberOfScreens.bind(this);
+    this.showInfo = this.showInfo.bind(this);
   }
 
   // componentDidMount() {
@@ -42,6 +45,11 @@ class App extends React.Component {
 
   userName(obj) {
     return obj.thumbnail_url.split('_')[2].split('-')[0]
+  }
+
+  showInfo() {
+    //change height???
+    this.setState({info: !this.state.info});
   }
 
 
@@ -64,13 +72,13 @@ class App extends React.Component {
     const {numberOfScreens} = this.state;
 
     if (numberOfScreens === 'one') {
-      return <OneScreen screenSize = {this.state.screenSize.one} streamerList = {this.state.streamerList} singleScreen = {true}/>
+      return <OneScreen screenSize = {this.state.screenSize.one} streamerList = {this.state.streamerList} singleScreen = {true} info={this.state.info}/>
 
     } else if (numberOfScreens === 'two') {
-      return <TwoScreen screenSize = {this.state.screenSize.two} streamerList = {this.state.streamerList} singleScreen = {false}/>
+      return <TwoScreen screenSize = {this.state.screenSize.two} streamerList = {this.state.streamerList} singleScreen = {false} info={this.state.info}/>
 
     } else if (numberOfScreens === 'four') {
-      return <FourScreen screenSize = {this.state.screenSize.four} streamerList = {this.state.streamerList} singleScreen = {false} />
+      return <FourScreen screenSize = {this.state.screenSize.four} streamerList = {this.state.streamerList} singleScreen = {false} info={this.state.info} />
 
     } else {
 
@@ -80,7 +88,7 @@ class App extends React.Component {
   render () {
     return (
       <div className="container-fluid main" >
-        <TopBar numberOfScreens = {this.numberOfScreens}/>
+        <TopBar numberOfScreens = {this.numberOfScreens} showInfo={this.showInfo} info={this.state.info}/>
         {this.renderScreens()}
       </div>)
   }

@@ -5,7 +5,7 @@ const OneScreen = (props) => (
 
   <div className="container-fluid">
     <div className="row">
-      <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} singleScreen = {props.singleScreen}/>
+      <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} singleScreen = {props.singleScreen} info={props.info}/>
     </div>
   </div>
 );

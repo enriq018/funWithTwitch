@@ -6,12 +6,12 @@ const TwoScreen = (props) => (
     <div className="row">
       <div className="col-md-6">
         <div className="row">
-          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList}/>
+          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} info={props.info}/>
         </div>
       </div>
       <div className="col-md-6">
         <div className="row">
-          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList}/>
+          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} info={props.info}/>
         </div>
       </div>
     </div>
