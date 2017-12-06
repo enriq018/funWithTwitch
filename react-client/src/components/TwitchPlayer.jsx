@@ -53,7 +53,7 @@ class TwitchPlayer extends React.Component {
             {this.props.singleScreen ? <button onClick = {() => this.addChat()} type="button" className="btn btn-info">{this.state.chatText}</button> : <div></div>}
           </div>
         <iframe className = 'stream'
-          src={`http://player.twitch.tv/?channel=${this.state.streamer}`}
+          src={`https://player.twitch.tv/?channel=${this.state.streamer}`}
           frameBorder='0'
           height={this.props.screenSize[0]}
           width={this.state.chat ? '850' : this.props.screenSize[1]}
@@ -65,7 +65,7 @@ class TwitchPlayer extends React.Component {
         <iframe frameborder="0" 
                 scrolling="no" 
                 id="chat_embed" 
-                src={`http://www.twitch.tv/${this.state.streamer}/chat`}
+                src={`https://www.twitch.tv/${this.state.streamer}/chat`}
                 height = "570"
                 width="350">
         </iframe> : 
