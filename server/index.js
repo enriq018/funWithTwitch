@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var twitchData = require('./twitchData.js');
 var request = require('request');
 
-
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 // UNCOMMENT FOR REACT
@@ -33,7 +33,7 @@ app.get('/streamerList', (req, res) => {
   });
 });
 
-app.listen(3000, function() {
-  console.log('listening on port 3000!');
+app.listen(PORT, function() {
+  console.log('listening on port ', PORT);
 });
 
