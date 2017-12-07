@@ -15,7 +15,7 @@ class App extends React.Component {
       items: [],
       //hieght width
       numberOfScreens: 'one',
-      info: false,
+      info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
         one: [600, '1250px'],
@@ -23,10 +23,12 @@ class App extends React.Component {
         four: [330, '620px']
       },
 
-      streamerList: ['Shiphtur','scarra','c9sneaky', 'imaqtpie']
+      streamerList: ['doubleLift','scarra','c9sneaky', 'imaqtpie'],
+      savedList: ['doubleLift','scarra','c9sneaky', 'imaqtpie']
     };
     this.numberOfScreens = this.numberOfScreens.bind(this);
     this.showInfo = this.showInfo.bind(this);
+    this.changeStream = this.changeStream.bind(this);
   }
 
   // componentDidMount() {
@@ -45,6 +47,12 @@ class App extends React.Component {
 
   userName(obj) {
     return obj.thumbnail_url.split('_')[2].split('-')[0]
+  }
+
+  changeStream(index, name) {
+    var updatedList = this.state.savedList;
+    updatedList[index] = name;
+    this.setState({savedList: updatedList});
   }
 
   showInfo() {
@@ -72,13 +80,16 @@ class App extends React.Component {
     const {numberOfScreens} = this.state;
 
     if (numberOfScreens === 'one') {
-      return <OneScreen screenSize = {this.state.screenSize.one} streamerList = {this.state.streamerList} singleScreen = {true} info={this.state.info}/>
+      return <OneScreen screenSize = {this.state.screenSize.one} streamerList = {this.state.streamerList} savedList={this.state.savedList[0]
+      } singleScreen = {true} info={this.state.info} changeStream={this.changeStream}/>
 
     } else if (numberOfScreens === 'two') {
-      return <TwoScreen screenSize = {this.state.screenSize.two} streamerList = {this.state.streamerList} singleScreen = {false} info={this.state.info}/>
+      return <TwoScreen screenSize = {this.state.screenSize.two} streamerList = {this.state.streamerList} savedList={this.state.savedList}
+       singleScreen = {false} info={this.state.info} changeStream={this.changeStream}/>
 
     } else if (numberOfScreens === 'four') {
-      return <FourScreen screenSize = {this.state.screenSize.four} streamerList = {this.state.streamerList} singleScreen = {false} info={this.state.info} />
+      return <FourScreen screenSize = {this.state.screenSize.four} streamerList = {this.state.streamerList} savedList={this.state.savedList}
+       singleScreen = {false} info={this.state.info} changeStream={this.changeStream} />
 
     } else {
 

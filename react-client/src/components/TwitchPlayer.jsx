@@ -29,8 +29,14 @@ class TwitchPlayer extends React.Component {
   }
 
   componentDidMount() {
-    var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
-    this.setState({streamer: randomStreamer})
+    
+    // var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
+    this.setState({streamer: this.props.savedList})
+  }
+  changeStreamer(name){
+    console.log('index:', this.props.index, 'name', name)
+    this.props.changeStream(this.props.index, name);
+    this.setState({streamer: name});
   }
 
 
@@ -46,9 +52,8 @@ class TwitchPlayer extends React.Component {
                         Live Streamers
                       </button>
                       <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      {this.props.streamerList.map((el, index) => <a onClick= {()=> this.setState({streamer: el})} className="dropdown-item" key = {index}>{el}</a>)}
+                      {this.props.streamerList.map((el, index) => <a onClick= {()=> this.changeStreamer(el)} className="dropdown-item" key = {index}>{el}</a>)}
                       </div>
-                      {console.log('thahthtehaehe', this.props)}
                       <button type="button" className="btn btn-info">{this.state.streamer}</button>
                       {this.props.singleScreen ? <button onClick = {() => this.addChat()} type="button" className="btn btn-info">{this.state.chatText}</button> : <div></div>}
                     </div> : <div></div>}

@@ -3,15 +3,16 @@ import TwitchPlayer from './TwitchPlayer.jsx';
 const TwoScreen = (props) => (
 
   <div className="container-fluid">
+  {console.log('%%%%%%%%%%%%%%%', props.savedList)}
     <div className="row">
       <div className="col-md-6">
         <div className="row">
-          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} info={props.info}/>
+          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} savedList={props.savedList[0]} info={props.info} index={0} changeStream={props.changeStream}/>
         </div>
       </div>
       <div className="col-md-6">
         <div className="row">
-          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} info={props.info}/>
+          <TwitchPlayer screenSize = {props.screenSize} streamerList = {props.streamerList} savedList={props.savedList[1]} info={props.info} index={1} changeStream={props.changeStream}/>
         </div>
       </div>
     </div>
