@@ -20,7 +20,7 @@ class App extends React.Component {
         //change height based on info being shown or not (+- 30px i think)
         one: [600, '1250px'],
         two: [600, '650px'],
-        four: [330, '620px']
+        four: [330, '655px']
       },
 
       streamerList: ['doubleLift','scarra','c9sneaky', 'imaqtpie'],
@@ -30,20 +30,6 @@ class App extends React.Component {
     this.showInfo = this.showInfo.bind(this);
     this.changeStream = this.changeStream.bind(this);
   }
-
-  // componentDidMount() {
-  //   $.ajax({
-  //     url: '/items', 
-  //     success: (data) => {
-  //       this.setState({
-  //         items: data
-  //       })
-  //     },
-  //     error: (err) => {
-  //       console.log('err', err);
-  //     }
-  //   });
-  // }
 
   userName(obj) {
     return obj.thumbnail_url.split('_')[2].split('-')[0]
@@ -72,7 +58,7 @@ class App extends React.Component {
   }
 
   numberOfScreens(string) {
-    console.log('clicked', string)
+    console.log('clicked', string);
     this.setState({numberOfScreens: string});
   }
 
