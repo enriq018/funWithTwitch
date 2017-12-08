@@ -18,9 +18,9 @@ class App extends React.Component {
       info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
-        one: [600, '1250px'],
-        two: [600, '650px'],
-        four: [330, '655px']
+        one: [590, '1250px'],
+        two: [588, '653px'],
+        four: [320, '655px']
       },
 
       streamerList: ['doubleLift','scarra','c9sneaky', 'imaqtpie'],
@@ -29,6 +29,7 @@ class App extends React.Component {
     this.numberOfScreens = this.numberOfScreens.bind(this);
     this.showInfo = this.showInfo.bind(this);
     this.changeStream = this.changeStream.bind(this);
+    this.renderSignIn = this.renderSignIn.bind(this);
   }
 
   userName(obj) {
@@ -44,6 +45,10 @@ class App extends React.Component {
   showInfo() {
     //change height???
     this.setState({info: !this.state.info});
+  }
+
+  renderSignIn(){
+    this.setState({signedIn:!this.state.signedIn});
   }
 
 
@@ -85,7 +90,8 @@ class App extends React.Component {
   render () {
     return (
       <div className="container-fluid main" >
-        <TopBar numberOfScreens = {this.numberOfScreens} showInfo={this.showInfo} info={this.state.info}/>
+        <TopBar numberOfScreens = {this.numberOfScreens} showInfo={this.showInfo} 
+        info={this.state.info} signedIn={this.state.signedIn} renderSignIn={this.renderSignIn}/>
         {this.renderScreens()}
       </div>)
   }

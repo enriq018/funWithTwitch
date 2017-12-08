@@ -8,7 +8,8 @@ class TwitchPlayer extends React.Component {
       chat: false,
       chatText: 'Show Chat',
       searchState: false,
-      searchText: ''
+      searchText: '',
+      signedIn: false
 
 
     };

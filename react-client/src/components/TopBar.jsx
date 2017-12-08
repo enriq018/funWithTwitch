@@ -1,28 +1,55 @@
 import React from 'react';
 
-const TopBar = (props) => (
-<div className="container topBar">
-  <div className="row">
-    <div className="col-md-4">
-      <div className="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <button onClick = {()=> props.showInfo()} type="button" className="btn btn-secondary">{props.info ? 'Hide Stream Info' : 'Show Stream Info'}</button>
+class TopBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      groupNameText: '',
+      saveGroupBox:false
+    }
+  }
 
-			  <button onClick = {()=> props.numberOfScreens('one')} type="button" className="btn btn-secondary">1</button>
-			  <button onClick = {()=> props.numberOfScreens('two')} type="button" className="btn btn-secondary">2</button>
-			  <button onClick = {()=> props.numberOfScreens('four')} type="button" className="btn btn-secondary">4</button>
+  render() {
+    return (
+      <div className="container topBar">
+        <div className="row">
+          <div className="col-md-4">
+            <div className="btn-group btn-group-md" role="group" aria-label="Basic example">
+              <button onClick = {()=> this.props.showInfo()} type="button" className="btn btn-secondary">{this.props.info ? 'Hide Stream Info' : 'Show Stream Info'}</button>
 
-			</div>
-    </div>
-    <div className="col-md-4">
-      Nothing for now
-    </div>
-    <div className="col-md-4">
-      More space?
-    </div>
-  </div>
-</div>
+              <button onClick = {()=> this.props.numberOfScreens('one')} type="button" className="btn btn-secondary">1</button>
+              <button onClick = {()=> this.props.numberOfScreens('two')} type="button" className="btn btn-secondary">2</button>
+              <button onClick = {()=> this.props.numberOfScreens('four')} type="button" className="btn btn-secondary">4</button>
 
-)
+            </div>
+          </div>
+          <div className="col-md-4">
+            {this.props.signedIn ? 
+
+              <div className="btn-group">
+              <input onChange={(e)=> this.setState({groupNameText:e.target.value})} placeholder="group name"/>
+              <button type="button" className="btn btn-secondary" onClick={()=> console.log(this.state.groupNameText)}> <span className="fa fa-download"></span> Save Group</button>
+              <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span className="sr-only">Toggle Dropdown</span>
+              </button>
+              <div className="dropdown-menu">
+                <a className="dropdown-item" href="#!">Action</a>
+                <a className="dropdown-item" href="#!">Another action</a>
+              </div>
+            </div>:
+               <h5>T-Lite</h5>}
+            
+          </div>
+          <div className="col-md-4">
+            <button onClick={()=> this.props.renderSignIn()}> clickMe </button>
+
+          </div>
+
+        </div>
+      </div>
+    )
+  }
+} 
 
 
 export default TopBar;
