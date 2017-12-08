@@ -7,6 +7,8 @@ class TwitchPlayer extends React.Component {
       streamer: 'Shiphtur',
       chat: false,
       chatText: 'Show Chat',
+      searchState: false,
+      searchText: ''
 
 
     };
@@ -33,17 +35,18 @@ class TwitchPlayer extends React.Component {
     // var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
     this.setState({streamer: this.props.savedList})
   }
-  changeStreamer(name){
+  changeStreamer(name, hideSearch){
     console.log('index:', this.props.index, 'name', name)
     this.props.changeStream(this.props.index, name);
-    this.setState({streamer: name});
-  }
+    this.setState({streamer: name, searchState: hideSearch});
 
+  }
 
   render() {
     return (
       <div className = "container-fluid TwitchPlayer">
           {console.log('------------', this.props.screenSize[0])}
+          <div>
 
           {this.props.info ? <div className="dropdown">
                       <button className="btn btn-secondary dropdown-toggle"
@@ -52,15 +55,25 @@ class TwitchPlayer extends React.Component {
                         Live Streamers
                       </button>
                       <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      {this.props.streamerList.map((el, index) => <a onClick= {()=> this.changeStreamer(el)} className="dropdown-item" key = {index}>{el}</a>)}
+                      {this.props.streamerList.map((el, index) => <a onClick= {()=> this.changeStreamer(el, false)} className="dropdown-item" key = {index}>{el}</a>)}
                       </div>
-                      <button type="button" className="btn btn-info">{this.state.streamer}</button>
-                      {this.props.singleScreen ? <button onClick = {() => this.addChat()} type="button" className="btn btn-info">{this.state.chatText}</button> : <div></div>}
+                      <button type="button" className="btn btn-info"><span className="fa fa-star"></span> {this.state.streamer}</button>
+                      {this.state.searchState ? 
+                        <span>
+                          <input placeholder="streamer name" onChange={(e)=> this.setState({searchText: e.target.value})}/>
+                          <button className="btn btn-info" onClick={()=> this.changeStreamer(this.state.searchText, false)}>go  <span className="fa fa-arrow-right"></span></button>
+                        </span> : 
+                        <button className="btn btn-info" onClick = {() => this.setState({searchState: true})} ><span className="fa fa-search"></span> Search</button>
+                      }
+
+                      {this.props.singleScreen ? <button onClick = {() => this.addChat()} type="button" className="btn btn-info"><span className="fa fa-globe"></span> {this.state.chatText}</button> : <div></div>}
                     </div> : <div></div>}
+                              </div>
+
         <iframe className = 'stream'
           src={`https://player.twitch.tv/?channel=${this.state.streamer}`}
           frameBorder='0'
-          height={this.props.info ? (this.props.screenSize[0] - 30) + 'px': this.props.screenSize[0] + 'px'}
+          height={this.props.info ? (this.props.screenSize[0] - 30) + 'px' : this.props.screenSize[0] + 'px'}
           width={this.state.chat ? '850' : this.props.screenSize[1]}
           allowFullScreen='true'
         >
@@ -76,6 +89,7 @@ class TwitchPlayer extends React.Component {
         </iframe> : 
         <div></div>
         }
+
       </div>
     );
   }
