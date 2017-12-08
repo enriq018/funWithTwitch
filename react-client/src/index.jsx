@@ -20,9 +20,10 @@ class App extends React.Component {
         //change height based on info being shown or not (+- 30px i think)
         one: [590, '1250px'],
         two: [588, '653px'],
-        four: [320, '655px']
+        four: [320, '645px']
       },
-
+      groupNames: [{id: 1, group: 'all trick!', streamers: 'trick2g,trick2g,trick2g,trick2g'}, 
+        {id: 2, group: 'original setup', streamers: 'doubleLift , scarra , c9sneaky, imaqtpie'}],
       streamerList: ['doubleLift','scarra','c9sneaky', 'imaqtpie'],
       savedList: ['doubleLift','scarra','c9sneaky', 'imaqtpie']
     };
@@ -30,6 +31,8 @@ class App extends React.Component {
     this.showInfo = this.showInfo.bind(this);
     this.changeStream = this.changeStream.bind(this);
     this.renderSignIn = this.renderSignIn.bind(this);
+    this.changeGroup = this.changeGroup.bind(this);
+    this.saveGroup = this.saveGroup.bind(this);
   }
 
   userName(obj) {
@@ -47,8 +50,19 @@ class App extends React.Component {
     this.setState({info: !this.state.info});
   }
 
-  renderSignIn(){
-    this.setState({signedIn:!this.state.signedIn});
+  renderSignIn() {
+    this.setState({signedIn: !this.state.signedIn});
+  }
+
+  changeGroup(array) {
+    var updateSaved = array.split(',');
+    this.setState({savedList: updateSaved});
+    this.numberOfScreens('four');
+  }
+
+  saveGroup(name) {
+    var obj = {groupName: name, streamers: this.state.savedList};
+    console.log('GO TO SLEEP', obj);
   }
 
 
@@ -91,7 +105,8 @@ class App extends React.Component {
     return (
       <div className="container-fluid main" >
         <TopBar numberOfScreens = {this.numberOfScreens} showInfo={this.showInfo} 
-        info={this.state.info} signedIn={this.state.signedIn} renderSignIn={this.renderSignIn}/>
+        info={this.state.info} signedIn={this.state.signedIn} renderSignIn={this.renderSignIn} 
+        groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup}/>
         {this.renderScreens()}
       </div>)
   }

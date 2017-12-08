@@ -31,6 +31,7 @@ class TwitchPlayer extends React.Component {
 
   }
 
+
   componentDidMount() {
     
     // var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
@@ -62,7 +63,9 @@ class TwitchPlayer extends React.Component {
                       {this.state.searchState ? 
                         <span>
                           <input placeholder="streamer name" onChange={(e)=> this.setState({searchText: e.target.value})}/>
-                          <button className="btn btn-info" onClick={()=> this.changeStreamer(this.state.searchText, false)}>go  <span className="fa fa-arrow-right"></span></button>
+                          <button className="btn btn-info" onClick={()=> this.changeStreamer(this.state.searchText, false)}><span className="fa fa-arrow-right"></span></button>
+                          <button className="btn btn-info" onClick={()=> this.setState({searchState:false})}><span className="fa fa-remove"></span></button>
+
                         </span> : 
                         <button className="btn btn-info" onClick = {() => this.setState({searchState: true})} ><span className="fa fa-search"></span> Search</button>
                       }

@@ -28,13 +28,12 @@ class TopBar extends React.Component {
 
               <div className="btn-group">
               <input onChange={(e)=> this.setState({groupNameText:e.target.value})} placeholder="group name"/>
-              <button type="button" className="btn btn-secondary" onClick={()=> console.log(this.state.groupNameText)}> <span className="fa fa-download"></span> Save Group</button>
+              <button type="button" className="btn btn-secondary" onClick={()=> this.props.saveGroup(this.state.groupNameText)}> <span className="fa fa-download"></span> Save Group</button>
               <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="sr-only">Toggle Dropdown</span>
               </button>
               <div className="dropdown-menu">
-                <a className="dropdown-item" href="#!">Action</a>
-                <a className="dropdown-item" href="#!">Another action</a>
+                {this.props.groupNames.map((el, index) => <a onClick={()=> this.props.changeGroup(el.streamers)}className="dropdown-item" key ={index}>{el.group}</a>)}
               </div>
             </div>:
                <h5>T-Lite</h5>}
