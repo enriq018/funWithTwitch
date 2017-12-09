@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
-// var items = require('../database-mongo');
+// var db = require('../database-mongo');
 
 var twitchData = require('./twitchData.js');
 var request = require('request');
@@ -31,6 +31,13 @@ app.get('/streamerList', (req, res) => {
     console.log('got names!', JSON.parse(body))
     res.status(200);
     res.send(JSON.parse(body));
+  });
+});
+
+app.get('/groupList', (req, res) => {
+  db.getGroups(data => {
+    res.status(200);
+    res.send(data);
   });
 });
 

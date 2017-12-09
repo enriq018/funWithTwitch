@@ -6,7 +6,7 @@
 
 }
 .main {
-	background-color: BlueViolet;
+	background-color: black;
 }
 
 body {
@@ -18,4 +18,16 @@ body {
 	float: none;
     margin: 0 auto;
      display: inline-block;
+}
+
+div.dropdown-menu{
+  background-color: black;
+}
+
+#name {
+	color: white;
+}
+
+#name:hover {
+	color: blueviolet;
 }

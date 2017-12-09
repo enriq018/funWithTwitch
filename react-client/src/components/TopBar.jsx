@@ -5,7 +5,7 @@ class TopBar extends React.Component {
     super(props);
     this.state = {
       groupNameText: '',
-      saveGroupBox:false
+      saveGroupBox: false
     }
   }
 
@@ -33,7 +33,7 @@ class TopBar extends React.Component {
                 <span className="sr-only">Toggle Dropdown</span>
               </button>
               <div className="dropdown-menu">
-                {this.props.groupNames.map((el, index) => <a onClick={()=> this.props.changeGroup(el.streamers)}className="dropdown-item" key ={index}>{el.group}</a>)}
+                {this.props.groupNames.map((el, index) => <div> <button className="btn btn-success" onClick={()=> this.props.changeGroup(el.streamers)} key ={index}>{el.group}</button> <button className="btn btn-danger"> <span className="fa fa-remove"></span> delete:{el.group}</button> </div>)}
               </div>
             </div>:
                <h5>T-Lite</h5>}

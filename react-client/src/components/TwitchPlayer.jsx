@@ -57,7 +57,7 @@ class TwitchPlayer extends React.Component {
                         Live Streamers
                       </button>
                       <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      {this.props.streamerList.map((el, index) => <a onClick= {()=> this.changeStreamer(el, false)} className="dropdown-item" key = {index}>{el}</a>)}
+                      {this.props.streamerList.map((el, index) => <a onClick= {()=> this.changeStreamer(el, false)} className="dropdown-item" id='name' key = {index}>{el}</a>)}
                       </div>
                       <button type="button" className="btn btn-info"><span className="fa fa-star"></span> {this.state.streamer}</button>
                       {this.state.searchState ? 
