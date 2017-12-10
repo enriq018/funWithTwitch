@@ -9,6 +9,12 @@ class TopBar extends React.Component {
     }
   }
 
+  saveGroup() {
+    var groupName = this.state.groupNameText;
+    this.setState({groupNameText: ''});
+    this.props.saveGroup(groupName);
+  }
+
   render() {
     return (
       <div className="container topBar">
@@ -27,13 +33,13 @@ class TopBar extends React.Component {
             {this.props.signedIn ? 
 
               <div className="btn-group">
-              <input onChange={(e)=> this.setState({groupNameText:e.target.value})} placeholder="group name"/>
-              <button type="button" className="btn btn-secondary" onClick={()=> this.props.saveGroup(this.state.groupNameText)}> <span className="fa fa-download"></span> Save Group</button>
+              <input onChange={(e)=> this.setState({groupNameText:e.target.value})} placeholder='group name' value={this.state.groupNameText}/>
+              <button type="button" className="btn btn-secondary" onClick={()=> this.saveGroup()}> <span className="fa fa-download"></span> Save Group</button>
               <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="sr-only">Toggle Dropdown</span>
               </button>
               <div className="dropdown-menu">
-                {this.props.groupNames.map((el, index) => <div> <button className="btn btn-success" onClick={()=> this.props.changeGroup(el.streamers)} key ={index}>{el.group}</button> <button className="btn btn-danger"> <span className="fa fa-remove"></span> delete:{el.group}</button> </div>)}
+                {this.props.groupNames.map((el, index) => <div> <button className="btn btn-success" onClick={()=> this.props.changeGroup(el.streamers)} key ={index}><span className="fa fa-film"></span> {el.groupName}</button> <button onClick={()=> this.props.deleteGroup(el.groupName)}className="btn btn-danger"> <span className="fa fa-remove"></span> {el.groupName}</button> </div>)}
               </div>
             </div>:
                <h5>T-Lite</h5>}

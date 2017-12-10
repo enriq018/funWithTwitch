@@ -22,10 +22,10 @@ class App extends React.Component {
         two: [588, '653px'],
         four: [320, '645px']
       },
-      groupNames: [{id: 1, group: 'all trick!', streamers: 'trick2g,trick2g,trick2g,trick2g'}, 
-        {id: 2, group: 'original setup', streamers: 'doubleLift , scarra , c9sneaky, imaqtpie'}],
-      streamerList: ['doubleLift','scarra','c9sneaky', 'imaqtpie'],
-      savedList: ['doubleLift','scarra','c9sneaky', 'imaqtpie']
+      groupNames: [],
+      streamerList: ['callofduty','scarra','c9sneaky', 'imaqtpie'],
+      savedList: ['callofduty','scarra','c9sneaky', 'imaqtpie'],
+      userId: 21
     };
     this.numberOfScreens = this.numberOfScreens.bind(this);
     this.showInfo = this.showInfo.bind(this);
@@ -33,6 +33,7 @@ class App extends React.Component {
     this.renderSignIn = this.renderSignIn.bind(this);
     this.changeGroup = this.changeGroup.bind(this);
     this.saveGroup = this.saveGroup.bind(this);
+    this.deleteGroup = this.deleteGroup.bind(this);
   }
 
   userName(obj) {
@@ -51,7 +52,10 @@ class App extends React.Component {
   }
 
   renderSignIn() {
+    //need user id. currently using mock data
     this.setState({signedIn: !this.state.signedIn});
+    this.getGroups(this.state.userId);
+
   }
 
   changeGroup(array) {
@@ -61,8 +65,27 @@ class App extends React.Component {
   }
 
   saveGroup(name) {
-    var obj = {groupName: name, streamers: this.state.savedList};
-    console.log('GO TO SLEEP', obj);
+    var obj = {userId: this.state.userId, groupName: name, streamers: this.state.savedList};
+    axios.post('/groupList',obj)
+      .then(()=> {
+        this.getGroups(this.state.userId)
+      })
+  }
+
+  getGroups(id) {
+    console.log('@@@@@@@@@@@');
+    axios.get(`/groupList/${id}`)
+      .then(data => {
+        console.log('success groups', data);
+        this.setState({groupNames: data.data});
+      });
+  }
+
+  deleteGroup(groupName) {
+    axios.delete(`/groupList/${this.state.userId}/${groupName}`)
+      .then(() => {
+        this.getGroups(this.state.userId);
+      });
   }
 
 
@@ -106,7 +129,7 @@ class App extends React.Component {
       <div className="container-fluid main" >
         <TopBar numberOfScreens = {this.numberOfScreens} showInfo={this.showInfo} 
         info={this.state.info} signedIn={this.state.signedIn} renderSignIn={this.renderSignIn} 
-        groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup}/>
+        groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup} deleteGroup={this.deleteGroup}/>
         {this.renderScreens()}
       </div>)
   }

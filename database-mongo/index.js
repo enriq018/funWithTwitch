@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/');
+mongoose.connect('mongodb://localhost/funWithTwitch');
 
 
 var db = mongoose.connection;
@@ -30,13 +30,51 @@ db.once('open', function() {
 // };
 
 var groupSchema = mongoose.Schema({
+  Id: Number,
   userId: Number,
   groupName: String,
   streamers: String
 });
 
-// var addGroup = (obj) => {
-//   var group = mongoose.model('')
-// }
+var Group = mongoose.model('Group', groupSchema);
 
-module.exports.selectAll = selectAll;
+var addGroup = (obj, callback) => {
+  console.log('--------------------', typeof obj.id)
+  var group = new Group({userId: obj.userId, groupName: obj.groupName, streamers: obj.streamers});
+  group.save((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('success')
+      callback();
+    }
+  });
+};
+
+var findGroups = (id, callback) => {
+  Group.find({userId: id}, (err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      callback(data)
+    }
+  });
+};
+
+var deleteGroup = (obj, callback) => {
+  Group.remove({userId: obj.id, groupName: obj.groupName} , (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(data);
+    }
+  });
+};
+
+
+
+module.exports = {
+  addGroup: addGroup,
+  findGroups: findGroups,
+  deleteGroup: deleteGroup
+};
