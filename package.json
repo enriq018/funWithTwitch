@@ -1,15 +1,14 @@
 {
-  "name": "github-fetcher-fullstack-v2",
+  "name": "funWithTwitch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "start" : "node server/index.js"
-
+    "start": "node server/index.js"
   },
-  "author": "Beth Johnson",
+  "author": "Javier Enriquez",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.23.1",
@@ -28,6 +27,8 @@
     "mysql": "^2.13.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-google-login": "^3.0.2",
+    "react-google-signin": "^1.0.1",
     "request": "^2.83.0",
     "require": "^2.4.20"
   }

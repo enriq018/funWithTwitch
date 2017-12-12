@@ -1,4 +1,5 @@
 import React from 'react';
+import Google from './Google.jsx';
 
 class TopBar extends React.Component {
   constructor(props) {
@@ -42,12 +43,27 @@ class TopBar extends React.Component {
                 {this.props.groupNames.map((el, index) => <div> <button className="btn btn-success" onClick={()=> this.props.changeGroup(el.streamers)} key ={index}><span className="fa fa-film"></span> {el.groupName}</button> <button onClick={()=> this.props.deleteGroup(el.groupName)}className="btn btn-danger"> <span className="fa fa-remove"></span> {el.groupName}</button> </div>)}
               </div>
             </div>:
-               <h5>T-Lite</h5>}
+               <h5 id="googleInfo" className="font-italic">Sign In to Save Groups</h5>}
             
           </div>
-          <div className="col-md-4">
-            <button onClick={()=> this.props.renderSignIn()}> clickMe </button>
-
+          <div className="col-md-1">
+            {this.props.signedIn ?
+              <span> <span id="googleInfo" class="badge badge-dark">Hi {this.props.userData.profileObj.givenName}</span><h3 id='googleInfo'>  <span className="badge badge-secondary"> </span> </h3> </span> : 
+              <Google renderSignIn={this.props.renderSignIn}/>}
+          </div>
+          <div className="col-md-1">
+            {this.props.signedIn ?
+              <img id='pic' src={"https://lh6.googleusercontent.com/--KsDT5oIN7I/AAAAAAAAAAI/AAAAAAAAAHI/7paI78Gux_o/s96-c/photo.jpg"}/>
+ : 
+              <span></span>}
+          </div>
+          <div className="col-md-2">
+            {this.props.signedIn ?
+             <form className="form-inline">
+  <button type="submit" id="logout" className="btn btn-primary btn-sm" href=''>Logout</button>
+</form>: 
+              <span></span>}
+          
           </div>
 
         </div>
@@ -56,7 +72,29 @@ class TopBar extends React.Component {
   }
 } 
 
-
 export default TopBar;
 
 
+            // <button onClick={()=> this.props.renderSignIn()}> clickMe </button>
+
+
+
+//data.
+// profileObj:
+// {…}
+// email:
+// "jav.enriquez@gmail.com"
+// familyName:
+// "Enriquez"
+// givenName:
+// "Javier"
+// googleId:
+// "100300693732495718765"
+// imageUrl:
+// "https://lh6.googleusercontent.com/--KsDT5oIN7I/AAAAAAAAAAI/AAAAAAAAAHI/7paI78Gux_o/s96-c/photo.jpg"
+// name:
+// "Javier Enriquez"
+// tokenId:
+// "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0MDU4ZTJiOTllNTc2MTAyZGMyYWVmZDVkZDAzNmVlZjQ1NmUzNWYifQ.eyJhenAiOiI0MDEwNzYxNjM3NzUtYjdicDJzZGpvbnExYTQyMjVuY21ndDFzanVvMWVrZWQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhd…"
+// tokenObj:
+// {…}

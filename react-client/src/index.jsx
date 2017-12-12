@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import GoogleSignIn from "react-google-signin";
 import TopBar from './components/TopBar.jsx';
 import OneScreen from './components/OneScreen.jsx';
 import TwoScreen from './components/TwoScreen.jsx';
@@ -18,14 +19,16 @@ class App extends React.Component {
       info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
-        one: [590, '1250px'],
-        two: [588, '653px'],
-        four: [320, '645px']
+        one: [580, '1250px'],
+        two: [578, '653px'],
+        four: [310, '645px']
       },
       groupNames: [],
-      streamerList: ['callofduty','scarra','c9sneaky', 'imaqtpie'],
-      savedList: ['callofduty','scarra','c9sneaky', 'imaqtpie'],
-      userId: 21
+      streamerList: ['c9sneaky','scarra','c9sneaky', 'imaqtpie'],
+      savedList: ['c9sneaky','scarra','c9sneaky', 'imaqtpie'],
+      userId: 21,
+      userData: {profileObj:{name:'bob', }},
+      signedIn: false
     };
     this.numberOfScreens = this.numberOfScreens.bind(this);
     this.showInfo = this.showInfo.bind(this);
@@ -51,9 +54,11 @@ class App extends React.Component {
     this.setState({info: !this.state.info});
   }
 
-  renderSignIn() {
+  renderSignIn(data) {
     //need user id. currently using mock data
     this.setState({signedIn: !this.state.signedIn});
+    this.setState({userData: data});
+    this.setState({userId: data.googleId})
     this.getGroups(this.state.userId);
 
   }
@@ -64,7 +69,7 @@ class App extends React.Component {
     this.numberOfScreens('four');
   }
 
-  saveGroup(name) {
+  saveGroup(name, id) {
     var obj = {userId: this.state.userId, groupName: name, streamers: this.state.savedList};
     axios.post('/groupList',obj)
       .then(()=> {
@@ -81,7 +86,7 @@ class App extends React.Component {
       });
   }
 
-  deleteGroup(groupName) {
+  deleteGroup(groupName, id) {
     axios.delete(`/groupList/${this.state.userId}/${groupName}`)
       .then(() => {
         this.getGroups(this.state.userId);
@@ -129,10 +134,14 @@ class App extends React.Component {
       <div className="container-fluid main" >
         <TopBar numberOfScreens = {this.numberOfScreens} showInfo={this.showInfo} 
         info={this.state.info} signedIn={this.state.signedIn} renderSignIn={this.renderSignIn} 
-        groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup} deleteGroup={this.deleteGroup}/>
+        groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup} deleteGroup={this.deleteGroup} userData={this.state.userData} signedIn={this.state.signedIn}/>
         {this.renderScreens()}
       </div>)
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+//Here is your client ID
+//401076163775-b7bp2sdjonq1a4225ncmgt1sjuo1eked.apps.googleusercontent.com
+//client secret 
+//PDQqXpkN-OO3eZvIrYittz10

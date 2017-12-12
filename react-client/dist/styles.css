@@ -31,3 +31,24 @@ div.dropdown-menu{
 #name:hover {
 	color: blueviolet;
 }
+
+#googleInfo {
+	color: white;
+	text-align: center;
+vertical-align: middle;
+}
+
+#pic {
+     position: absolute;
+    top: 0px;
+    right: 0px;
+        width: 40px;
+    height: 40px;
+        border-radius: 50%;
+}
+
+#logout{
+	    color: #fff;
+    background-color: #19171c;
+    border-color: #ddd;
+}

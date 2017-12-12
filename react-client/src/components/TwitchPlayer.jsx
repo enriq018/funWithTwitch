@@ -44,6 +44,7 @@ class TwitchPlayer extends React.Component {
 
   }
 
+
   render() {
     return (
       <div className = "container-fluid TwitchPlayer">
@@ -59,7 +60,7 @@ class TwitchPlayer extends React.Component {
                       <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
                       {this.props.streamerList.map((el, index) => <a onClick= {()=> this.changeStreamer(el, false)} className="dropdown-item" id='name' key = {index}>{el}</a>)}
                       </div>
-                      <button type="button" className="btn btn-info"><span className="fa fa-star"></span> {this.state.streamer}</button>
+                      <button type="button" className="btn btn-info"  ><span className="fa fa-star"></span> {this.state.streamer}</button>
                       {this.state.searchState ? 
                         <span>
                           <input placeholder="streamer name" onChange={(e)=> this.setState({searchText: e.target.value})}/>
