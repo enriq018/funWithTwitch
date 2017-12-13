@@ -1,5 +1,14 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/funWithTwitch');
+
+/////////////////////////////////////////////////////////////////////////////////
+var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };  
+
+var mongodbUri = 'mongodb://enriq018:plantlife@ds153494.mlab.com:53494/funwithtwitch';
+mongoose.connect(mongodbUri, options);
+
+/////////////////////////////////////
+// mongoose.connect('mongodb://localhost/funWithTwitch');
 
 
 var db = mongoose.connection;
