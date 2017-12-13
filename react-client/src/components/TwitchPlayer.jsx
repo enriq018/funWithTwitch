@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 class TwitchPlayer extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,7 @@ class TwitchPlayer extends React.Component {
 
   render() {
     return (
-      <div className = "container-fluid TwitchPlayer">
+      <div className = "container-fluid TwitchPlayer" >
           {console.log('------------', this.props.screenSize[0])}
           <div>
 
@@ -65,7 +67,7 @@ class TwitchPlayer extends React.Component {
                         <span>
                           <input placeholder="streamer name" onChange={(e)=> this.setState({searchText: e.target.value})}/>
                           <button className="btn btn-info" onClick={()=> this.changeStreamer(this.state.searchText, false)}><span className="fa fa-arrow-right"></span></button>
-                          <button className="btn btn-info" onClick={()=> this.setState({searchState:false})}><span className="fa fa-remove"></span></button>
+                          <button className="btn btn-info" onClick={()=> this.setState({searchState: false})}><span className="fa fa-remove"></span></button>
 
                         </span> : 
                         <button className="btn btn-info" onClick = {() => this.setState({searchState: true})} ><span className="fa fa-search"></span> Search</button>
@@ -75,7 +77,7 @@ class TwitchPlayer extends React.Component {
                     </div> : <div></div>}
                               </div>
 
-        <iframe className = 'stream'
+        <iframe className = 'stream' id="twichPlayerScreen"
           src={`https://player.twitch.tv/?channel=${this.state.streamer}`}
           frameBorder='0'
           height={this.props.info ? (this.props.screenSize[0] - 30) + 'px' : this.props.screenSize[0] + 'px'}

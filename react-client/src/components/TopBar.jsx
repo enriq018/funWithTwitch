@@ -43,17 +43,18 @@ class TopBar extends React.Component {
                 {this.props.groupNames.map((el, index) => <div> <button className="btn btn-success" onClick={()=> this.props.changeGroup(el.streamers)} key ={index}><span className="fa fa-film"></span> {el.groupName}</button> <button onClick={()=> this.props.deleteGroup(el.groupName)}className="btn btn-danger"> <span className="fa fa-remove"></span> {el.groupName}</button> </div>)}
               </div>
             </div>:
-               <h5 id="googleInfo" className="font-italic">Sign In to Save Groups</h5>}
+               <h5 id="googleInfo" className="font-italic">Sign in to save layout!</h5>}
             
           </div>
           <div className="col-md-1">
             {this.props.signedIn ?
-              <span> <span id="googleInfo" class="badge badge-dark">Hi {this.props.userData.profileObj.givenName}</span><h3 id='googleInfo'>  <span className="badge badge-secondary"> </span> </h3> </span> : 
-              <Google renderSignIn={this.props.renderSignIn}/>}
+              <span> <span id="googleInfo2" className="badge badge-dark">Hi {this.props.userData.profileObj.givenName}</span><h3 id='googleInfo'>  <span className="badge badge-secondary"> </span> </h3> </span> : 
+              <Google id = 'google' renderSignIn={this.props.renderSignIn}/>}
           </div>
           <div className="col-md-1">
+
             {this.props.signedIn ?
-              <img id='pic' src={"https://lh6.googleusercontent.com/--KsDT5oIN7I/AAAAAAAAAAI/AAAAAAAAAHI/7paI78Gux_o/s96-c/photo.jpg"}/>
+              <img id='pic' src={this.props.userData.profileObj.imageUrl}/>
  : 
               <span></span>}
           </div>

@@ -19,8 +19,8 @@ class App extends React.Component {
       info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
-        one: [580, '1250px'],
-        two: [578, '653px'],
+        one: [570, '1250px'],
+        two: [570, '653px'],
         four: [310, '645px']
       },
       groupNames: [],
