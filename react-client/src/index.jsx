@@ -141,6 +141,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+//save to config file later
 //Here is your client ID
 //401076163775-b7bp2sdjonq1a4225ncmgt1sjuo1eked.apps.googleusercontent.com
 //client secret 
