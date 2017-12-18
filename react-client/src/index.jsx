@@ -15,7 +15,7 @@ class App extends React.Component {
     this.state = { 
       items: [],
       //hieght width
-      numberOfScreens: 'one',
+      numberOfScreens: 'two',
       info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
@@ -24,8 +24,8 @@ class App extends React.Component {
         four: [310, '645px']
       },
       groupNames: [],
-      streamerList: ['c9sneaky','scarra','c9sneaky', 'imaqtpie'],
-      savedList: ['c9sneaky','scarra','c9sneaky', 'imaqtpie'],
+      streamerList: ['c9sneaky','summit1g','c9sneaky', 'imaqtpie'],
+      savedList: ['c9sneaky','summit1g','c9sneaky', 'imaqtpie'],
       userId: 21,
       userData: {profileObj:{name:'bob', }},
       signedIn: false

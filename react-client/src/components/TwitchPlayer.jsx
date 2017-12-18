@@ -57,7 +57,7 @@ class TwitchPlayer extends React.Component {
                       <button className="btn btn-secondary dropdown-toggle"
                         type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Live Streamers
+                        Change Streamer
                       </button>
                       <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
                       {this.props.streamerList.map((el, index) => <a onClick= {()=> this.changeStreamer(el, false)} className="dropdown-item" id='name' key = {index}>{el}</a>)}
