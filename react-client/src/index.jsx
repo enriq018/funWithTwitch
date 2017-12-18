@@ -23,6 +23,7 @@ class App extends React.Component {
         two: [570, '653px'],
         four: [310, '645px']
       },
+      
       groupNames: [],
       streamerList: ['c9sneaky','summit1g','c9sneaky', 'imaqtpie'],
       savedList: ['c9sneaky','summit1g','c9sneaky', 'imaqtpie'],
