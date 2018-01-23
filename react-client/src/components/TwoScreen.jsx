@@ -3,7 +3,7 @@ import TwitchPlayer from './TwitchPlayer.jsx';
 const TwoScreen = (props) => (
 
   <div className="container-fluid">
-  {console.log('%%%%%%%%%%%%%%%', props.savedList)}
+    {console.log('%%%%%%%%%%%%%%%', props.savedList)}
     <div className="row">
       <div className="col-md-6">
         <div className="row">
@@ -17,7 +17,7 @@ const TwoScreen = (props) => (
       </div>
     </div>
   </div>
-)
+);
 
 export default TwoScreen;
 

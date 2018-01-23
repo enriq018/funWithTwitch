@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import GoogleSignIn from "react-google-signin";
+import GoogleSignIn from 'react-google-signin';
 import TopBar from './components/TopBar.jsx';
 import OneScreen from './components/OneScreen.jsx';
 import TwoScreen from './components/TwoScreen.jsx';
@@ -25,11 +25,12 @@ class App extends React.Component {
       },
       
       groupNames: [],
-      streamerList: ['loltyler1','imaqtpie','c9sneaky', 'yoda' ],
-      savedList: ['loltyler1','imaqtpie','c9sneaky', 'yoda' ],
+      streamerList: ['loltyler1', 'imaqtpie', 'c9sneaky', 'yoda' ],
+      savedList: ['loltyler1', 'imaqtpie', 'c9sneaky', 'yoda' ],
       userId: 21,
-      userData: {profileObj:{name:'bob', }},
+      userData: {profileObj: { name: 'bob', }},
       signedIn: false
+
     };
     this.numberOfScreens = this.numberOfScreens.bind(this);
     this.showInfo = this.showInfo.bind(this);
@@ -41,7 +42,7 @@ class App extends React.Component {
   }
 
   userName(obj) {
-    return obj.thumbnail_url.split('_')[2].split('-')[0]
+    return obj.thumbnail_url.split('_')[2].split('-')[0];
   }
 
   changeStream(index, name) {
@@ -59,9 +60,8 @@ class App extends React.Component {
     //need user id. currently using mock data
     this.setState({signedIn: !this.state.signedIn});
     this.setState({userData: data});
-    this.setState({userId: data.googleId})
+    this.setState({userId: data.googleId});
     this.getGroups(this.state.userId);
-
   }
 
   changeGroup(array) {
@@ -72,14 +72,13 @@ class App extends React.Component {
 
   saveGroup(name, id) {
     var obj = {userId: this.state.userId, groupName: name, streamers: this.state.savedList};
-    axios.post('/groupList',obj)
+    axios.post('/groupList', obj)
       .then(()=> {
-        this.getGroups(this.state.userId)
-      })
+        this.getGroups(this.state.userId);
+      });
   }
 
   getGroups(id) {
-    console.log('@@@@@@@@@@@');
     axios.get(`/groupList/${id}`)
       .then(data => {
         console.log('success groups', data);
@@ -94,41 +93,31 @@ class App extends React.Component {
       });
   }
 
-
   componentWillMount() {
-        //set height based on user window size
+    //set height based on user window size
     var height = window.innerHeight
     || document.documentElement.clientHeight
     || document.body.clientHeight;
-  
+    //set width based on user window size
     var width = window.innerWidth
     || document.documentElement.clientWidth
     || document.body.clientWidth;
-    console.log('QQQQQQQQQ',width, 'current 653px', 'mathfloor',Math.floor(width * .5) + 'px');
-    var widthOne = width * .95  + 'px';
+    var widthOne = width * .95 + 'px';
     var widthTwo = Math.floor(width * .475) + 'px';
     var widthFour = Math.floor(width * .475) - 20 + 'px';
-    console.log('widthTwo', widthTwo)
-
-    // var newSize = {
-    //   //change height based on info being shown or not (+- 30px i think)
-    //   one: [height * .9, widthOne],
-    //   two: [height * .9, '653px'],
-    //   four: [height / 2, `'${645}px'`]
-    // };
-      var newSize = {
+    var newSize = {
       //change height based on info being shown or not (+- 30px i think)
       one: [height * .88, widthOne],
       two: [height * .88, widthTwo],
       four: [Math.floor(height / 2 - 45), widthTwo]
     };
+    //Adjust the twitch screen player based on user screen size
     this.setState({screenSize: newSize});
-
+    //Get list of active streamers from twitch api then update client with data
     axios.get('/streamerList')
       .then(data => {
-        console.log('!!!!!!!!!!!!', height)
         console.log('success', data.data.data);
-        var list = data.data.data.map((el, index) => this.userName(el))
+        var list = data.data.data.map((el, index) => this.userName(el));
         this.setState({streamerData: data.data.data });
         this.setState({streamerList: list});
       });
@@ -144,15 +133,15 @@ class App extends React.Component {
 
     if (numberOfScreens === 'one') {
       return <OneScreen screenSize = {this.state.screenSize.one} streamerList = {this.state.streamerList} savedList={this.state.savedList[0]
-      } singleScreen = {true} info={this.state.info} changeStream={this.changeStream}/>
+      } singleScreen = {true} info={this.state.info} changeStream={this.changeStream}/>;
 
     } else if (numberOfScreens === 'two') {
       return <TwoScreen screenSize = {this.state.screenSize.two} streamerList = {this.state.streamerList} savedList={this.state.savedList}
-       singleScreen = {false} info={this.state.info} changeStream={this.changeStream}/>
+        singleScreen = {false} info={this.state.info} changeStream={this.changeStream}/>;
 
     } else if (numberOfScreens === 'four') {
       return <FourScreen screenSize = {this.state.screenSize.four} streamerList = {this.state.streamerList} savedList={this.state.savedList}
-       singleScreen = {false} info={this.state.info} changeStream={this.changeStream} />
+        singleScreen = {false} info={this.state.info} changeStream={this.changeStream} />;
 
     } else {
 
@@ -163,16 +152,23 @@ class App extends React.Component {
     return (
       <div className="container-fluid main" >
         <TopBar numberOfScreens = {this.numberOfScreens} showInfo={this.showInfo} 
-        info={this.state.info} signedIn={this.state.signedIn} renderSignIn={this.renderSignIn} 
-        groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup} deleteGroup={this.deleteGroup} userData={this.state.userData} signedIn={this.state.signedIn}/>
+          info={this.state.info} signedIn={this.state.signedIn} renderSignIn={this.renderSignIn} 
+          groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup} deleteGroup={this.deleteGroup} userData={this.state.userData} signedIn={this.state.signedIn}/>
         {this.renderScreens()}
-      </div>)
+      </div>
+    );
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+
+
+
+
 //save to config file later
-//Here is your client ID
+//Here is your client ID (google Login)
 //401076163775-b7bp2sdjonq1a4225ncmgt1sjuo1eked.apps.googleusercontent.com
 //client secret 
 //PDQqXpkN-OO3eZvIrYittz10
