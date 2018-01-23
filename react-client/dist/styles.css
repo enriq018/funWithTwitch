@@ -3,6 +3,11 @@
 
 .topBar {
 	padding: 2px;
+    padding-right:0;
+    padding-left:0;
+    margin-right:auto;
+    margin-left:auto
+
 }
 
 .TwitchPlayer {
@@ -103,4 +108,13 @@ element.style {
 
 #googleButtonTest {
   background-color: black;
+}
+
+#topBarSpace {
+
+    padding-right:0;
+    padding-left:0;
+    margin-right:auto;
+    margin-left:auto
+ 
 }

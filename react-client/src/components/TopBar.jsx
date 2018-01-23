@@ -18,9 +18,9 @@ class TopBar extends React.Component {
 
   render() {
     return (
-      <div className="container topBar">
-        <div className="row">
-          <div className="col-md-4">
+      <div className="container-fluid topBar">
+        <div className="row" id = "topBarSpace">
+          <div className="col-md-4 col-sm-2">
             <div className="btn-group btn-group-md" role="group" aria-label="Basic example">
               <button onClick = {()=> this.props.showInfo()} type="button" className="btn btn-secondary">{this.props.info ? 'Hide Stream Info' : 'Show Stream Info'}</button>
 
@@ -30,7 +30,7 @@ class TopBar extends React.Component {
 
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 col-sm-4">
             {this.props.signedIn ? 
 
               <div className="btn-group">
@@ -46,12 +46,12 @@ class TopBar extends React.Component {
                <h5 id="googleInfo" className="font-italic">Sign in to save layout!</h5>}
             
           </div>
-          <div className="col-md-1">
+          <div className="col-md-1 col-sm-1">
             {this.props.signedIn ?
               <span> <span id="googleInfo2" className="badge badge-dark">Hi {this.props.userData.profileObj.givenName}</span><h3 id='googleInfo'>  <span className="badge badge-secondary"> </span> </h3> </span> : 
               <Google id = 'google' renderSignIn={this.props.renderSignIn}/>}
           </div>
-          <div className="col-md-1">
+          <div className="col-md-1 col-sm-1">
 
             {this.props.signedIn ?
               <img id='pic' src={this.props.userData.profileObj.imageUrl}/>
