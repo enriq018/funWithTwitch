@@ -25,8 +25,8 @@ class App extends React.Component {
       },
       
       groupNames: [],
-      streamerList: ['c9sneaky','summit1g','c9sneaky', 'imaqtpie'],
-      savedList: ['c9sneaky','summit1g','c9sneaky', 'imaqtpie'],
+      streamerList: ['loltyler1','imaqtpie','c9sneaky', 'yoda' ],
+      savedList: ['loltyler1','imaqtpie','c9sneaky', 'yoda' ],
       userId: 21,
       userData: {profileObj:{name:'bob', }},
       signedIn: false
@@ -96,8 +96,37 @@ class App extends React.Component {
 
 
   componentWillMount() {
+        //set height based on user window size
+    var height = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+  
+    var width = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+    console.log('QQQQQQQQQ',width, 'current 653px', 'mathfloor',Math.floor(width * .5) + 'px');
+    var widthOne = width * .95  + 'px';
+    var widthTwo = Math.floor(width * .475) + 'px';
+    var widthFour = Math.floor(width * .475) - 20 + 'px';
+    console.log('widthTwo', widthTwo)
+
+    // var newSize = {
+    //   //change height based on info being shown or not (+- 30px i think)
+    //   one: [height * .9, widthOne],
+    //   two: [height * .9, '653px'],
+    //   four: [height / 2, `'${645}px'`]
+    // };
+      var newSize = {
+      //change height based on info being shown or not (+- 30px i think)
+      one: [height * .88, widthOne],
+      two: [height * .88, widthTwo],
+      four: [Math.floor(height / 2 - 45), widthTwo]
+    };
+    this.setState({screenSize: newSize});
+
     axios.get('/streamerList')
       .then(data => {
+        console.log('!!!!!!!!!!!!', height)
         console.log('success', data.data.data);
         var list = data.data.data.map((el, index) => this.userName(el))
         this.setState({streamerData: data.data.data });
