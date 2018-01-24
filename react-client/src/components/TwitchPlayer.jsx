@@ -64,7 +64,7 @@ class TwitchPlayer extends React.Component {
           src={`https://player.twitch.tv/?channel=${this.state.streamer}`}
           frameBorder='0'
           height={this.props.info ? (this.props.screenSize[0] - 30) + 'px' : this.props.screenSize[0] + 'px'}
-          width={this.state.chat ? '850' : this.props.screenSize[1]}
+          width={this.state.chat ? parseInt(this.props.screenSize[1]) * .6 + 'px' : this.props.screenSize[1]}
           allowFullScreen='true'
         >
         </iframe>
@@ -74,7 +74,7 @@ class TwitchPlayer extends React.Component {
             id="chat_embed" 
             src={`https://www.twitch.tv/${this.state.streamer}/chat`}
             height={this.props.info ? (this.props.screenSize[0] - 30) + 'px' : this.props.screenSize[0] + 'px'}
-            width="350">
+            width= {parseInt(this.props.screenSize[1]) * .35 + 'px'}>
           </iframe> : 
           <div></div>
         }

@@ -42,7 +42,7 @@ div.dropdown-menu{
 
 #googleInfo {
 	color: white;
-	text-align: center;
+	text-align: right;
 vertical-align: middle;
 }
 #googleInfo2 {
@@ -51,6 +51,12 @@ vertical-align: middle;
 vertical-align: middle;
     font-size: 15px;
 
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #7d5bbe;
+    border-color: #19171c;
 }
 
 
@@ -118,3 +124,4 @@ element.style {
     margin-left:auto
  
 }
+
