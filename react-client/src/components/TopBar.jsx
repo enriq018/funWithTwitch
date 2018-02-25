@@ -11,7 +11,7 @@ class TopBar extends React.Component {
 // this.setState({groupNameText: ''}); // this.props.saveGroup(groupName); // }
 render() {
   return <div className="columns is-mobile">
-      <div className="column is-5">
+      <div className="column is-4">
         <div className="dropdown">
           <div className="dropdown-trigger">
             <button className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
@@ -55,7 +55,7 @@ render() {
         <div className="dropdown is-hoverable">
           <div className="dropdown-trigger">
             <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-              <span># of Screen</span>
+              <span>Screens</span>
               <span className="icon is-small">
                 <i className="fas fa-th-large" aria-hidden="true" />
               </span>
@@ -78,18 +78,19 @@ render() {
       {/* Input box and dropdown to select groups*/}
       <div className="column">
         <div className="columns is-gapless is-mobile">
-          <div className="column is-3">
+          <div className="column is-4">
             <div className="field">
               <div className="control">
                 <input className="input" type="text" placeholder="group name" />
               </div>
             </div>
           </div>
+          <button className="button">Save Group</button>
           <div className="column">
             <div className="dropdown">
               <div className="dropdown-trigger">
                 <button className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                  <span>Groups</span>
+                  <span />
                   <span className="icon is-small">
                     <i className="fas fa-angle-down" aria-hidden="true" />
                   </span>
@@ -115,10 +116,56 @@ render() {
             </div>
           </div>
         </div>
-        {/* Input box and dropdown to select groups*/}
       </div>
-      <div className="column is-2">
-        <h2>GOOO</h2>
+      {/* Input box and dropdown to select groups*/}
+      <div className="column is-4">
+        <div className="columns is-gapless is-mobile">
+          <div className="column">
+            <p>Image........</p>
+          </div>
+
+          <div className="column">
+            <div className="dropdown">
+              <div className="dropdown-trigger">
+                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                  <span>Logout</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-caret-square-up" aria-hidden="true" />
+                  </span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu3" role="menu">
+                <div className="dropdown-content">
+                  <a href="#" className="dropdown-item">
+                    Overview
+                  </a>
+                  <a href="#" className="dropdown-item">
+                    Modifiers
+                  </a>
+                  <a href="#" className="dropdown-item">
+                    Grid
+                  </a>
+                  <a href="#" className="dropdown-item">
+                    Form
+                  </a>
+                  <a href="#" className="dropdown-item">
+                    Elements
+                  </a>
+                  <a href="#" className="dropdown-item">
+                    Components
+                  </a>
+                  <a href="#" className="dropdown-item">
+                    Layout
+                  </a>
+                  <hr className="dropdown-divider" />
+                  <a href="#" className="dropdown-item">
+                    More
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>;}
 }

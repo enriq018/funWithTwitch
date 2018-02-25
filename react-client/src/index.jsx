@@ -258,7 +258,7 @@ class App extends React.Component {
 
 
               <iframe className = 'stream' id="twichPlayerScreen"
-                src={`https://player.twitch.tv/?channel=imaqtpie`}
+                src={`https://player.twitch.tv/?channel=riotgames`}
                 frameBorder='0'
                 height={570 + 'px'}
                 width={'100%'}
