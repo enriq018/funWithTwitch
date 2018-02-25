@@ -25,8 +25,20 @@ import TwitchPlayer from './TwitchPlayer.jsx';
 const TwoScreen = props => (
   <div className="container is-fullhd">
           <div className="columns is-gapless is-mobile">
-          <TwitchPlayer />
-          <TwitchPlayer />
+          <TwitchPlayer    screenSize={props.screenSize}
+        streamerList={props.streamerList}
+        savedList={props.savedList}
+        singleScreen={props.singleScreen}
+        info={props.info}
+        index={0}
+        changeStream={props.changeStream} />
+          <TwitchPlayer    screenSize={props.screenSize}
+        streamerList={props.streamerList}
+        savedList={props.savedList}
+        singleScreen={props.singleScreen}
+        info={props.info}
+        index={0}
+        changeStream={props.changeStream} />
           </div>
         </div>
 )

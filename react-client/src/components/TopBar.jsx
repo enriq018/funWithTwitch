@@ -14,7 +14,7 @@ render() {
       <div className="column is-4">
         <div className="dropdown">
           <div className="dropdown-trigger">
-            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+            <button onClick={() => this.props.showInfo()} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
               <span>Hide</span>
               <span className="icon is-small">
                 <i className="far fa-eye-slash" aria-hidden="true" />
@@ -64,12 +64,13 @@ render() {
           <div className="dropdown-menu" id="dropdown-menu4" role="menu">
             <div className="dropdown-content">
               <div className="dropdown-item">
-                <p>
-                  You can insert
-                  <strong>
-                    any type of content
-                  </strong> within the dropdown menu.
-                </p>
+                <a onClick={()=> this.props.numberOfScreens('one')}>One Screen</a>
+              </div>
+              <div className="dropdown-item">
+                <a onClick={()=> this.props.numberOfScreens('two')}>Two Screens</a>
+              </div>
+                            <div className="dropdown-item">
+                <a onClick={()=> this.props.numberOfScreens('four')}>Four Screens</a>
               </div>
             </div>
           </div>

@@ -53,10 +53,10 @@ const axios = require('axios');
 //     this.setState({savedList: updatedList});
 //   }
 
-//   showInfo() {
-//     //change height???
-//     this.setState({info: !this.state.info});
-//   }
+  // showInfo() {
+  //   //change height???
+  //   this.setState({info: !this.state.info});
+  // }
 
 //   renderSignIn(data) {
 //     //need user id. currently using mock data
@@ -125,10 +125,10 @@ const axios = require('axios');
 //       });
 //   }
 
-//   numberOfScreens(string) {
-//     console.log('clicked', string);
-//     this.setState({numberOfScreens: string});
-//   }
+  // numberOfScreens(string) {
+  //   console.log('clicked', string);
+  //   this.setState({numberOfScreens: string});
+  // }
 
   // renderScreens() {
   //   const {numberOfScreens} = this.state;
@@ -183,7 +183,7 @@ class App extends React.Component {
     this.state = {
       items: [],
       //hieght width
-      numberOfScreens: "two",
+      numberOfScreens: "four",
       info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
@@ -199,6 +199,17 @@ class App extends React.Component {
       userData: { profileObj: { name: "bob" } },
       signedIn: false
     };
+    this.showInfo = this.showInfo.bind(this);
+    this.numberOfScreens = this.numberOfScreens.bind(this);
+  }
+
+  showInfo() {
+    this.setState({ info: !this.state.info });
+  }
+
+  numberOfScreens(string) {
+    console.log("STRing", string);
+    this.setState({ numberOfScreens: string });
   }
 
   renderScreens() {
@@ -242,10 +253,12 @@ class App extends React.Component {
   }
 
   render() {
-    return <div>
-        <TopBar />
+    return (
+      <div>
+        <TopBar numberOfScreens={this.numberOfScreens} showInfo={this.showInfo} />
         {this.renderScreens()}
-      </div>;
+      </div>
+    );
   }
 }
 

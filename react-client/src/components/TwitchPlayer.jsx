@@ -125,44 +125,44 @@ class TwitchPlayer extends React.Component {
   //   this.setState({streamer: name, searchState: hideSearch});
   // }
   render() {
-    return (
-    <div className="column video-responsive">
-      {/* RIGHT HERE ACTIVE AND NOT ACTIVE*/}
-      <div className="dropdown">
-        <div className="dropdown-trigger">
-          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span>Streamers</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true" />
-            </span>
-          </button>
-        </div>
-        <div className="dropdown-menu" id="dropdown-menu" role="menu">
-          <div className="dropdown-content">
-            <a href="#" className="dropdown-item">
-              Dropdown item
-            </a>
-            <a className="dropdown-item">Other dropdown item</a>
-            <a href="#" className="dropdown-item is-active">
-              Active dropdown item
-            </a>
-            <a href="#" className="dropdown-item">
-              Other dropdown item
-            </a>
-            <hr className="dropdown-divider" />
-            <a href="#" className="dropdown-item">
-              With a divider
-            </a>
-          </div>
-        </div>
-      </div>
-      <span className="tag is-info is-medium">imaqtpie</span>
-      <span> </span>
-      <span className="tag is-info is-medium">Search</span>
+    return <div className="column video-responsive">
+        {/* RIGHT HERE ACTIVE AND NOT ACTIVE*/}
+        {this.props.info ? <div className="dropdown">
+            <div>
+              <div className="dropdown-trigger">
+                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                  <span>Streamers</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true" />
+                  </span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className="dropdown-content">
+                  <a href="#" className="dropdown-item">
+                    Dropdown item
+                  </a>
+                  <a className="dropdown-item">Other dropdown item</a>
+                  <a href="#" className="dropdown-item is-active">
+                    Active dropdown item
+                  </a>
+                  <a href="#" className="dropdown-item">
+                    Other dropdown item
+                  </a>
+                  <hr className="dropdown-divider" />
+                  <a href="#" className="dropdown-item">
+                    With a divider
+                  </a>
+                </div>
+              </div>
+            </div>
+            <span className="tag is-info is-medium">imaqtpie</span>
+            <span> </span>
+            <span className="tag is-info is-medium">Search</span>
+          </div> : <div />}
 
-      <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=riotgames`} frameBorder="0" height={570 + "px"} width={"100%"} allowFullScreen="true" />
-    </div>
-    )
+        <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=riotgames`} frameBorder="0" height={570 + "px"} width={"100%"} allowFullScreen="true" />
+      </div>;
   }
 }
 export default TwitchPlayer;
