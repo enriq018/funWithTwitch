@@ -36,10 +36,8 @@ class TopBar extends React.Component {
                 eyeStatus: !this.state.eyeStatus
               });
           }} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-          <span>Show</span>
-          <span className="icon is-small">
-            <img className="fas fa-hand-peace" aria-hidden="true" />
-          </span>
+          <span>ShowInfo</span>
+
         </button>;
     }
   }
@@ -111,15 +109,14 @@ class TopBar extends React.Component {
           </div>
         </div>;
     } else {
-      return (
-      <div className="column">
-          <div className="columns is-gapless is-mobile">
-            <div className="column is-4">
-            <h1>FunWithTwitch</h1>
+      return <div className="column">
+          <div className="columns is-mobile">
+            <div className="column is-2" />
+            <div className="column is-4" >
+              <img className="" src="https://javier-enriquez.000webhostapp.com/FunWithTwitchLogo3.png" alt="" />
             </div>
           </div>
-        </div>
-      )
+        </div>;
     }
   }
 
@@ -147,8 +144,10 @@ class TopBar extends React.Component {
     } else {
       return <div className="column is-4">
           <div className="columns is-gapless is-mobile">
-            <div className="column">
-              <Google id="google" renderSignIn={this.props.renderSignIn} />
+            <div className="column ">
+              <div className="is-pulled-right">
+                <Google id="google" renderSignIn={this.props.renderSignIn} />
+              </div>
             </div>
           </div>
         </div>;

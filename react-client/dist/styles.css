@@ -1,3 +1,7 @@
+body {
+    background-color: gainsboro
+}
+
 .video-responsive {
     overflow: hidden;
     padding-bottom: 56.25%;
@@ -13,24 +17,7 @@
     position: absolute;
 }
 
-/* .screen {
-    height: 600px;
-}  */
-body {
-    margin: 0;
-    padding: 0;
-}
 
-/* .frame {
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    border: 0 none;
-    box-sizing: border-box;
-} */
 
 #dropdownBlank{
    background:  rgba(10, 10, 10, .1);
@@ -63,6 +50,7 @@ body {
 
 }
 
+
     .scrollable-content {
       overflow-x:hidden;
       overflow-y:scroll;
@@ -77,17 +65,6 @@ body {
       background:rgba(255,0,0,0.1) !important;
     }
 
-
-   #fml {
-        display: inline-block;
-        background: black;
-        color: rgb(255, 255, 255);
-        width: 190px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-radius: 2px;
-        border: 1px solid transparent;
-        font-size: 16px;
-        font-weight: bold;
-        font-family: Roboto;
-    }
+    /* file: google-login.js
+    line:3600
+    GOOGLE BUTTON 3660  */
