@@ -37,7 +37,7 @@ const TwoScreen = props => (
         savedList={props.savedList}
         singleScreen={props.singleScreen}
         info={props.info}
-        index={0}
+        index={1}
         changeStream={props.changeStream} />
           </div>
         </div>

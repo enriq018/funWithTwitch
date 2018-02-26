@@ -43,15 +43,15 @@ const axios = require('axios');
 //     this.deleteGroup = this.deleteGroup.bind(this);
 //   }
 
-//   userName(obj) {
-//     return obj.thumbnail_url.split('_')[2].split('-')[0];
-//   }
+  // userName(obj) {
+  //   return obj.thumbnail_url.split('_')[2].split('-')[0];
+  // }
 
-//   changeStream(index, name) {
-//     var updatedList = this.state.savedList;
-//     updatedList[index] = name;
-//     this.setState({savedList: updatedList});
-//   }
+  // changeStream(index, name) {
+  //   var updatedList = this.state.savedList;
+  //   updatedList[index] = name;
+  //   this.setState({savedList: updatedList});
+  // }
 
   // showInfo() {
   //   //change height???
@@ -95,35 +95,35 @@ const axios = require('axios');
 //       });
 //   }
 
-//   componentWillMount() {
-//     //set height based on user window size
-//     var height = window.innerHeight
-//     || document.documentElement.clientHeight
-//     || document.body.clientHeight;
-//     //set width based on user window size
-//     var width = window.innerWidth
-//     || document.documentElement.clientWidth
-//     || document.body.clientWidth;
-//     var widthOne = width * .95 + 'px';
-//     var widthTwo = Math.floor(width * .475) + 'px';
-//     var widthFour = Math.floor(width * .475) - 20 + 'px';
-//     var newSize = {
-//       //change height based on info being shown or not (+- 30px i think)
-//       one: [height * .88, widthOne],
-//       two: [height * .88, widthTwo],
-//       four: [Math.floor(height / 2 - 45), widthTwo]
-//     };
-//     //Adjust the twitch screen player based on user screen size
-//     this.setState({screenSize: newSize});
-//     //Get list of active streamers from twitch api then update client with data
-//     axios.get('/streamerList')
-//       .then(data => {
-//         console.log('success', data.data.data);
-//         var list = data.data.data.map((el, index) => this.userName(el));
-//         this.setState({streamerData: data.data.data });
-//         this.setState({streamerList: list});
-//       });
-//   }
+  // componentWillMount() {
+  //   //set height based on user window size
+  //   var height = window.innerHeight
+  //   || document.documentElement.clientHeight
+  //   || document.body.clientHeight;
+  //   //set width based on user window size
+  //   var width = window.innerWidth
+  //   || document.documentElement.clientWidth
+  //   || document.body.clientWidth;
+  //   var widthOne = width * .95 + 'px';
+  //   var widthTwo = Math.floor(width * .475) + 'px';
+  //   var widthFour = Math.floor(width * .475) - 20 + 'px';
+  //   var newSize = {
+  //     //change height based on info being shown or not (+- 30px i think)
+  //     one: [height * .88, widthOne],
+  //     two: [height * .88, widthTwo],
+  //     four: [Math.floor(height / 2 - 45), widthTwo]
+  //   };
+  //   //Adjust the twitch screen player based on user screen size
+  //   this.setState({screenSize: newSize});
+  //   //Get list of active streamers from twitch api then update client with data
+  //   axios.get('/streamerList')
+  //     .then(data => {
+  //       console.log('success', data.data.data);
+  //       var list = data.data.data.map((el, index) => this.userName(el));
+  //       this.setState({streamerData: data.data.data });
+  //       this.setState({streamerList: list});
+  //     });
+  // }
 
   // numberOfScreens(string) {
   //   console.log('clicked', string);
@@ -183,7 +183,7 @@ class App extends React.Component {
     this.state = {
       items: [],
       //hieght width
-      numberOfScreens: "four",
+      numberOfScreens: "two",
       info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
@@ -201,6 +201,44 @@ class App extends React.Component {
     };
     this.showInfo = this.showInfo.bind(this);
     this.numberOfScreens = this.numberOfScreens.bind(this);
+    this.changeStream = this.changeStream.bind(this);
+    this.userName = this.userName.bind(this);
+  }
+
+  componentDidMount() {
+    //set height based on user window size
+    var height =
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
+    //set width based on user window size
+    var width =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    var widthOne = width * 0.95 + "px";
+    var widthTwo = Math.floor(width * 0.475) + "px";
+    var widthFour = Math.floor(width * 0.475) - 20 + "px";
+    var newSize = {
+      //change height based on info being shown or not (+- 30px i think)
+      one: [height * 0.89, widthOne],
+      two: [height * 0.89, widthTwo],
+      four: [Math.floor(height / 2 - 45), widthTwo]
+    };
+    //Adjust the twitch screen player based on user screen size
+    this.setState({ screenSize: newSize });
+    //Get list of active streamers from twitch api then update client with data
+    axios.get("/streamerList").then(data => {
+      console.log("success", data);
+      var list = data.data.data.map((el, index) => this.userName(el));
+      console.log("!!!!!!!!!!!!!!!!!!!", list);
+      this.setState({ streamerData: data.data.data });
+      this.setState({ streamerList: list });
+    });
+  }
+
+  userName(obj) {
+    return obj.thumbnail_url.split("_")[2].split("-")[0];
   }
 
   showInfo() {
@@ -210,6 +248,13 @@ class App extends React.Component {
   numberOfScreens(string) {
     console.log("STRing", string);
     this.setState({ numberOfScreens: string });
+  }
+
+  changeStream(index, name) {
+    var updatedList = this.state.savedList;
+    updatedList[index] = name;
+    console.log('#####################', updatedList)
+    this.setState({ savedList: updatedList });
   }
 
   renderScreens() {
@@ -255,7 +300,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <TopBar numberOfScreens={this.numberOfScreens} showInfo={this.showInfo} />
+        <TopBar
+          numberOfScreens={this.numberOfScreens}
+          showInfo={this.showInfo}
+        />
         {this.renderScreens()}
       </div>
     );

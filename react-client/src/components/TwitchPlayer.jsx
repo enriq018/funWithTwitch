@@ -63,7 +63,7 @@ import React from 'react';
 //         <iframe className = 'stream' id="twichPlayerScreen"
 //           src={`https://player.twitch.tv/?channel=${this.state.streamer}`}
 //           frameBorder='0'
-//           height={this.props.info ? (this.props.screenSize[0] - 30) + 'px' : this.props.screenSize[0] + 'px'}
+          // height={this.props.info ? (this.props.screenSize[0] - 30) + 'px' : this.props.screenSize[0] + 'px'}
 //           width={this.state.chat ? parseInt(this.props.screenSize[1]) * .6 + 'px' : this.props.screenSize[1]}
 //           allowFullScreen='true'
 //         >
@@ -102,6 +102,7 @@ class TwitchPlayer extends React.Component {
       signedIn: false
     };
    // this.addChat = this.addChat.bind(this);
+   this.changeStreamer = this.changeStreamer.bind(this);
   }
 
   // getRandomInt(min, max) {
@@ -115,22 +116,28 @@ class TwitchPlayer extends React.Component {
   //   var chat = !this.state.chat ? 'Hide Chat' : 'Show Chat';
   //   this.setState({chatText: chat});
   // }
-  // componentDidMount() {
-  //   // var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
-  //   this.setState({streamer: this.props.savedList});
-  // }
-  // changeStreamer(name, hideSearch) {
-  //   // console.log('index:', this.props.index, 'name', name)
-  //   this.props.changeStream(this.props.index, name);
-  //   this.setState({streamer: name, searchState: hideSearch});
-  // }
+  componentDidMount() {
+    // var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
+    // this.setState({streamer: this.props.savedList});
+    let streamer = this.props.savedList[this.props.index]
+    this.setState({streamer:streamer})
+  }
+
+  changeStreamer(name, hideSearch) {
+    // console.log('index:', this.props.index, 'name', name)
+    this.props.changeStream(this.props.index, name);
+    this.setState({streamer: name, searchState: false});
+  }
+
   render() {
     return <div className="column video-responsive">
         {/* RIGHT HERE ACTIVE AND NOT ACTIVE*/}
-        {this.props.info ? <div className="dropdown">
+        {this.props.info ? <div className={this.state.searchState ? "dropdown is-active" : "dropdown"}>
             <div>
               <div className="dropdown-trigger">
-                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                <button onClick={() => this.setState({
+                      searchState: !this.state.searchState
+                    })} className="button" aria-haspopup="true" aria-controls="dropdown-menu">
                   <span>Streamers</span>
                   <span className="icon is-small">
                     <i className="fas fa-angle-down" aria-hidden="true" />
@@ -139,29 +146,34 @@ class TwitchPlayer extends React.Component {
               </div>
               <div className="dropdown-menu" id="dropdown-menu" role="menu">
                 <div className="dropdown-content">
-                  <a href="#" className="dropdown-item">
-                    Dropdown item
-                  </a>
-                  <a className="dropdown-item">Other dropdown item</a>
-                  <a href="#" className="dropdown-item is-active">
-                    Active dropdown item
-                  </a>
-                  <a href="#" className="dropdown-item">
-                    Other dropdown item
+                  <a className="dropdown-item">
+                    <div className="control has-icons-left has-icons-right">
+                      <input className="input is-small" type="text" placeholder="Search streamer" />
+                      <span className="icon is-right">
+                        <i className="fas fa-search" />
+                      </span>
+                    </div>
                   </a>
                   <hr className="dropdown-divider" />
-                  <a href="#" className="dropdown-item">
-                    With a divider
-                  </a>
+                  {this.props.streamerList.map((el, index) => (
+                    <a
+                      className="dropdown-item"
+                      onClick={() => this.changeStreamer(el, false)}
+                      className="dropdown-item"
+                      id="name"
+                      key={index}
+                    >
+                      {el}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
-            <span className="tag is-info is-medium">imaqtpie</span>
+            <span className="tag is-info is-medium">{this.state.streamer}</span>
             <span> </span>
-            <span className="tag is-info is-medium">Search</span>
           </div> : <div />}
 
-        <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=riotgames`} frameBorder="0" height={570 + "px"} width={"100%"} allowFullScreen="true" />
+        <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=${this.state.streamer}`} frameBorder="0" height={this.props.info ? this.props.screenSize[0] - 30 + "px" : this.props.screenSize[0] + "px"} width={"100%"} allowFullScreen="true" />
       </div>;
   }
 }

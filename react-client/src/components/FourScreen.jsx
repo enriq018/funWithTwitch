@@ -50,7 +50,7 @@ const FourScreen = props => (
         savedList={props.savedList}
         singleScreen={props.singleScreen}
         info={props.info}
-        index={0}
+        index={1}
         changeStream={props.changeStream}
       />
     </div>
@@ -61,7 +61,7 @@ const FourScreen = props => (
         savedList={props.savedList}
         singleScreen={props.singleScreen}
         info={props.info}
-        index={0}
+        index={2}
         changeStream={props.changeStream}
       />
       <TwitchPlayer
@@ -70,7 +70,7 @@ const FourScreen = props => (
         savedList={props.savedList}
         singleScreen={props.singleScreen}
         info={props.info}
-        index={0}
+        index={3}
         changeStream={props.changeStream}
       />
     </div>
