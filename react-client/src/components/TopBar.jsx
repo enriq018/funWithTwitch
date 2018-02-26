@@ -11,7 +11,7 @@ class TopBar extends React.Component {
 // this.setState({groupNameText: ''}); // this.props.saveGroup(groupName); // }
 render() {
   return <div className="columns is-mobile">
-      <div className="column is-4">
+      <div className="column is-4 main">
         <div className="dropdown">
           <div className="dropdown-trigger">
             <button onClick={() => this.props.showInfo()} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">

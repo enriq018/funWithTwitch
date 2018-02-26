@@ -147,11 +147,13 @@ class TwitchPlayer extends React.Component {
               <div className="dropdown-menu" id="dropdown-menu" role="menu">
                 <div className="dropdown-content">
                   <a className="dropdown-item">
-                    <div className="control has-icons-left has-icons-right">
-                      <input className="input is-small" type="text" placeholder="Search streamer" />
-                      <span className="icon is-right">
-                        <i className="fas fa-search" />
-                      </span>
+                    <div>
+                      <input onChange={(e)=> this.setState({searchText:e.target.value})} className="input is-small" type="text" placeholder="Search" />
+                      <button onClick={() => this.changeStreamer(this.state.searchText,false)} className="button is-small">
+                        <span className="icon is-right">
+                          <i className="fas fa-search" />
+                        </span>
+                      </button>
                     </div>
                   </a>
                   <hr className="dropdown-divider" />
@@ -169,11 +171,13 @@ class TwitchPlayer extends React.Component {
                 </div>
               </div>
             </div>
-            <span className="tag is-info is-medium">{this.state.streamer}</span>
+            <span className="tag is-info is-medium">
+              {this.state.streamer}
+            </span>
             <span> </span>
           </div> : <div />}
 
-        <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=${this.state.streamer}`} frameBorder="0" height={this.props.info ? this.props.screenSize[0] - 30 + "px" : this.props.screenSize[0] + "px"} width={"100%"} allowFullScreen="true" />
+        <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=${this.state.streamer}`} frameBorder="0" height={this.props.info ? this.props.screenSize[0] - 30 + "px" : this.props.screenSize[0] + 10  + "px"} width={"100%"} allowFullScreen="true" />
       </div>;
   }
 }

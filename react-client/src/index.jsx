@@ -232,8 +232,7 @@ class App extends React.Component {
       console.log("success", data);
       var list = data.data.data.map((el, index) => this.userName(el));
       console.log("!!!!!!!!!!!!!!!!!!!", list);
-      this.setState({ streamerData: data.data.data });
-      this.setState({ streamerList: list });
+      this.setState({ streamerData: data.data.data, streamerList: list });
     });
   }
 
@@ -246,14 +245,13 @@ class App extends React.Component {
   }
 
   numberOfScreens(string) {
-    console.log("STRing", string);
     this.setState({ numberOfScreens: string });
   }
 
   changeStream(index, name) {
     var updatedList = this.state.savedList;
     updatedList[index] = name;
-    console.log('#####################', updatedList)
+    console.log('#####################',updatedList)
     this.setState({ savedList: updatedList });
   }
 
@@ -265,7 +263,7 @@ class App extends React.Component {
         <OneScreen
           screenSize={this.state.screenSize.one}
           streamerList={this.state.streamerList}
-          savedList={this.state.savedList[0]}
+          savedList={this.state.savedList}
           singleScreen={true}
           info={this.state.info}
           changeStream={this.changeStream}
@@ -299,7 +297,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="main">
         <TopBar
           numberOfScreens={this.numberOfScreens}
           showInfo={this.showInfo}
