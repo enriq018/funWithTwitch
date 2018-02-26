@@ -5,176 +5,208 @@ class TopBar extends React.Component {
     super(props);
     this.state = {
       groupNameText: '',
-      saveGroupBox: false
+      saveGroupBox: false,
+      dropDown: false
     };
-  } // saveGroup() { // var groupName = this.state.groupNameText;
-// this.setState({groupNameText: ''}); // this.props.saveGroup(groupName); // }
-render() {
-  return <div className="columns is-mobile">
-      <div className="column is-4 main">
-        <div className="dropdown">
-          <div className="dropdown-trigger">
-            <button onClick={() => this.props.showInfo()} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-              <span>Hide</span>
-              <span className="icon is-small">
-                <i className="far fa-eye-slash" aria-hidden="true" />
-              </span>
-            </button>
-          </div>
-          <div className="dropdown-menu" id="dropdown-menu3" role="menu">
-            <div className="dropdown-content">
-              <a href="#" className="dropdown-item">
-                Overview
-              </a>
-              <a href="#" className="dropdown-item">
-                Modifiers
-              </a>
-              <a href="#" className="dropdown-item">
-                Grid
-              </a>
-              <a href="#" className="dropdown-item">
-                Form
-              </a>
-              <a href="#" className="dropdown-item">
-                Elements
-              </a>
-              <a href="#" className="dropdown-item">
-                Components
-              </a>
-              <a href="#" className="dropdown-item">
-                Layout
-              </a>
-              <hr className="dropdown-divider" />
-              <a href="#" className="dropdown-item">
-                More
-              </a>
-            </div>
-          </div>
-        </div>
+  this.saveGroup = this.saveGroup.bind(this)
+  }
 
-        <div className="dropdown is-hoverable">
-          <div className="dropdown-trigger">
-            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-              <span>Screens</span>
-              <span className="icon is-small">
-                <i className="fas fa-th-large" aria-hidden="true" />
-              </span>
+  saveGroup() {
+    let groupName = this.state.groupNameText;
+    this.setState({groupNameText: ''});
+    this.props.saveGroup(groupName);
+  }
+
+  middleBar(){
+    if(this.props.signedIn){
+      return <div className="column">
+          <div className="columns is-gapless is-mobile">
+            <div className="column is-4">
+              <div className="field">
+                <div className="control">
+                  <input onChange={e => (this.state.groupNameText = e.target.value)} className="input" type="text" placeholder={this.state.groupNameText} />
+                </div>
+              </div>
+            </div>
+            <button onClick={() => this.saveGroup()} className="button">
+              Save Group
             </button>
-          </div>
-          <div className="dropdown-menu" id="dropdown-menu4" role="menu">
-            <div className="dropdown-content">
-              <div className="dropdown-item">
-                <a onClick={()=> this.props.numberOfScreens('one')}>One Screen</a>
-              </div>
-              <div className="dropdown-item">
-                <a onClick={()=> this.props.numberOfScreens('two')}>Two Screens</a>
-              </div>
-                            <div className="dropdown-item">
-                <a onClick={()=> this.props.numberOfScreens('four')}>Four Screens</a>
+            <div className="column">
+              <div className={this.state.dropDown ? "dropdown is-active" : "dropdown"}>
+                <div className="dropdown-trigger">
+                  <button onClick={()=> this.setState({dropDown:!this.state.dropDown})} className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                    <span />
+                    <span className="icon is-small">
+                      <i className="fas fa-angle-down" aria-hidden="true" />
+                    </span>
+                  </button>
+                </div>
+                <div className="dropdown-menu" id="dropdown-menu2" role="menu">
+                  <div className="dropdown-content">
+                    <div className="dropdown-item">
+                      {this.props.groupNames.map((el, index) => <div className="columns">
+                          {" "}
+                          <button className="button is-success" onClick={() => {this.props.changeGroup(el.streamers), this.setState({dropDown:!this.state.dropDown})}} key={index}>
+                            <span className="fa fa-film" /> { el.groupName}
+                          </button> <button onClick={() => {this.props.deleteGroup(el.groupName), this.setState({dropDown:!this.state.dropDown})}} className="button is-danger">
+                            {" "}
+                            <span className="fa fa-remove" /> { el.groupName}
+                          </button>{" "}
+                        </div>)}
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      {/* Input box and dropdown to select groups*/}
+        </div>;
+    } else {
+      return (
       <div className="column">
-        <div className="columns is-gapless is-mobile">
-          <div className="column is-4">
-            <div className="field">
-              <div className="control">
-                <input className="input" type="text" placeholder="group name" />
-              </div>
-            </div>
-          </div>
-          <button className="button">Save Group</button>
-          <div className="column">
-            <div className="dropdown">
-              <div className="dropdown-trigger">
-                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                  <span />
-                  <span className="icon is-small">
-                    <i className="fas fa-angle-down" aria-hidden="true" />
-                  </span>
-                </button>
-              </div>
-              <div className="dropdown-menu" id="dropdown-menu2" role="menu">
-                <div className="dropdown-content">
-                  <div className="dropdown-item">
-                    <p>
-                      You can insert <strong>any type of content</strong> within the dropdown menu.
-                    </p>
-                  </div>
-                  <hr className="dropdown-divider" />
-                  <div className="dropdown-item">
-                    <p>You simply need to use a instead.</p>
-                  </div>
-                  <hr className="dropdown-divider" />
-                  <a href="#" className="dropdown-item">
-                    This is a link
-                  </a>
-                </div>
-              </div>
+          <div className="columns is-gapless is-mobile">
+            <div className="column is-4">
+            <h1>FunWithTwitch</h1>
             </div>
           </div>
         </div>
-      </div>
-      {/* Input box and dropdown to select groups*/}
-      <div className="column is-4">
-        <div className="columns is-gapless is-mobile">
-          <div className="column">
-            <p>Image........</p>
+      )
+    }
+  }
+
+  rightBar() {
+    if(this.props.signedIn){
+      return <div className="column is-4">
+          <div className="columns is-gapless is-mobile">
+            <div className="column">
+              <div className="image is-48x48">
+
+              <img id="picture" src={this.props.userData.profileObj.imageUrl}/>
+              </div>
+            </div>
+
+            <div className="column">
+              <a href="" className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                <span>Logout</span>
+                <span className="icon is-small">
+                  <i className="fas fa-caret-square-up" aria-hidden="true" />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>;
+    } else {
+      return <div className="column is-4">
+          <div className="columns is-gapless is-mobile">
+            <div className="column">
+              <Google id="google" renderSignIn={this.props.renderSignIn} />
+            </div>
+          </div>
+        </div>;
+    }
+  }
+
+  render() {
+    return <div className="columns is-mobile">
+        <div className="column is-4 main">
+          <div className="dropdown">
+            <div className="dropdown-trigger">
+              <button onClick={() => this.props.showInfo()} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                <span>Hide</span>
+                <span className="icon is-small">
+                  <i className="far fa-eye-slash" aria-hidden="true" />
+                </span>
+              </button>
+            </div>
+            <div className="dropdown-menu" id="dropdown-menu3" role="menu">
+              <div className="dropdown-content">
+                <a href="#" className="dropdown-item">
+                  Overview
+                </a>
+                <a href="#" className="dropdown-item">
+                  Modifiers
+                </a>
+                <a href="#" className="dropdown-item">
+                  Grid
+                </a>
+                <a href="#" className="dropdown-item">
+                  Form
+                </a>
+                <a href="#" className="dropdown-item">
+                  Elements
+                </a>
+                <a href="#" className="dropdown-item">
+                  Components
+                </a>
+                <a href="#" className="dropdown-item">
+                  Layout
+                </a>
+                <hr className="dropdown-divider" />
+                <a href="#" className="dropdown-item">
+                  More
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="column">
-            <div className="dropdown">
-              <div className="dropdown-trigger">
-                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-                  <span>Logout</span>
-                  <span className="icon is-small">
-                    <i className="fas fa-caret-square-up" aria-hidden="true" />
-                  </span>
-                </button>
-              </div>
-              <div className="dropdown-menu" id="dropdown-menu3" role="menu">
-                <div className="dropdown-content">
-                  <a href="#" className="dropdown-item">
-                    Overview
-                  </a>
-                  <a href="#" className="dropdown-item">
-                    Modifiers
-                  </a>
-                  <a href="#" className="dropdown-item">
-                    Grid
-                  </a>
-                  <a href="#" className="dropdown-item">
-                    Form
-                  </a>
-                  <a href="#" className="dropdown-item">
-                    Elements
-                  </a>
-                  <a href="#" className="dropdown-item">
-                    Components
-                  </a>
-                  <a href="#" className="dropdown-item">
-                    Layout
-                  </a>
-                  <hr className="dropdown-divider" />
-                  <a href="#" className="dropdown-item">
-                    More
-                  </a>
+          <div className="dropdown is-hoverable">
+            <div className="dropdown-trigger">
+              <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                <span>Screens</span>
+                <span className="icon is-small">
+                  <i className="fas fa-th-large" aria-hidden="true" />
+                </span>
+              </button>
+            </div>
+            <div className="dropdown-menu" id="dropdown-menu4" role="menu">
+              <div className="dropdown-content">
+                <div className="dropdown-item">
+                  <a onClick={()=> this.props.numberOfScreens('one')}>One Screen</a>
+                </div>
+                <div className="dropdown-item">
+                  <a onClick={()=> this.props.numberOfScreens('two')}>Two Screens</a>
+                </div>
+                              <div className="dropdown-item">
+                  <a onClick={()=> this.props.numberOfScreens('four')}>Four Screens</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>;}
+        {/* Input box and dropdown to select groups*/}
+        {this.middleBar()}
+        {this.rightBar()}
+
+      </div>;}
 }
 export default TopBar;
 
 
 
+// ;
+// {
+//   /* Input box and dropdown to select groups*/
+// }
+// <div className="column is-4">
+//   <div className="columns is-gapless is-mobile">
+//     <div className="column">
+//       <p>Image........</p>
+//     </div>
 
+//     <div className="column">
+//       <button
+//         className="button"
+//         aria-haspopup="true"
+//         aria-controls="dropdown-menu3"
+//       >
+//         <span>Logout</span>
+//         <span className="icon is-small">
+//           <i className="fas fa-caret-square-up" aria-hidden="true" />
+//         </span>
+//       </button>
+//     </div>
+//   </div>
+// </div>;
 
       // <div className="container-fluid topBar">
       //   <div className="row" id = "topBarSpace">

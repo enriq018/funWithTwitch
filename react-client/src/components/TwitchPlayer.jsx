@@ -130,7 +130,7 @@ class TwitchPlayer extends React.Component {
   }
 
   render() {
-    return <div className="column video-responsive">
+    return <div className="column ">
         {/* RIGHT HERE ACTIVE AND NOT ACTIVE*/}
         {this.props.info ? <div className={this.state.searchState ? "dropdown is-active" : "dropdown"}>
             <div>
@@ -176,8 +176,10 @@ class TwitchPlayer extends React.Component {
             </span>
             <span> </span>
           </div> : <div />}
+        <div className="">
 
         <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=${this.state.streamer}`} frameBorder="0" height={this.props.info ? this.props.screenSize[0] - 30 + "px" : this.props.screenSize[0] + 10  + "px"} width={"100%"} allowFullScreen="true" />
+        </div>
       </div>;
   }
 }

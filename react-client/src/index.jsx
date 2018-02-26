@@ -37,10 +37,10 @@ const axios = require('axios');
 //     this.numberOfScreens = this.numberOfScreens.bind(this);
 //     this.showInfo = this.showInfo.bind(this);
 //     this.changeStream = this.changeStream.bind(this);
-//     this.renderSignIn = this.renderSignIn.bind(this);
-//     this.changeGroup = this.changeGroup.bind(this);
-//     this.saveGroup = this.saveGroup.bind(this);
-//     this.deleteGroup = this.deleteGroup.bind(this);
+    // this.renderSignIn = this.renderSignIn.bind(this);
+    // this.changeGroup = this.changeGroup.bind(this);
+    // this.saveGroup = this.saveGroup.bind(this);
+    // this.deleteGroup = this.deleteGroup.bind(this);
 //   }
 
   // userName(obj) {
@@ -58,42 +58,42 @@ const axios = require('axios');
   //   this.setState({info: !this.state.info});
   // }
 
-//   renderSignIn(data) {
-//     //need user id. currently using mock data
-//     this.setState({signedIn: !this.state.signedIn});
-//     this.setState({userData: data});
-//     this.setState({userId: data.googleId});
-//     this.getGroups(this.state.userId);
-//   }
+  // renderSignIn(data) {
+  //   //need user id. currently using mock data
+  //   this.setState({signedIn: !this.state.signedIn});
+  //   this.setState({userData: data});
+  //   this.setState({userId: data.googleId});
+  //   this.getGroups(this.state.userId);
+  // }
 
-//   changeGroup(array) {
-//     var updateSaved = array.split(',');
-//     this.setState({savedList: updateSaved});
-//     this.numberOfScreens('four');
-//   }
+  // changeGroup(array) {
+  //   var updateSaved = array.split(',');
+  //   this.setState({savedList: updateSaved});
+  //   this.numberOfScreens('four');
+  // }
 
-//   saveGroup(name, id) {
-//     var obj = {userId: this.state.userId, groupName: name, streamers: this.state.savedList};
-//     axios.post('/groupList', obj)
-//       .then(()=> {
-//         this.getGroups(this.state.userId);
-//       });
-//   }
+  // saveGroup(name, id) {
+  //   var obj = {userId: this.state.userId, groupName: name, streamers: this.state.savedList};
+  //   axios.post('/groupList', obj)
+  //     .then(()=> {
+  //       this.getGroups(this.state.userId);
+  //     });
+  // }
 
-//   getGroups(id) {
-//     axios.get(`/groupList/${id}`)
-//       .then(data => {
-//         console.log('success groups', data);
-//         this.setState({groupNames: data.data});
-//       });
-//   }
+  // getGroups(id) {
+  //   axios.get(`/groupList/${id}`)
+  //     .then(data => {
+  //       console.log('success groups', data);
+  //       this.setState({groupNames: data.data});
+  //     });
+  // }
 
-//   deleteGroup(groupName, id) {
-//     axios.delete(`/groupList/${this.state.userId}/${groupName}`)
-//       .then(() => {
-//         this.getGroups(this.state.userId);
-//       });
-//   }
+  // deleteGroup(groupName, id) {
+  //   axios.delete(`/groupList/${this.state.userId}/${groupName}`)
+  //     .then(() => {
+  //       this.getGroups(this.state.userId);
+  //     });
+  // }
 
   // componentWillMount() {
   //   //set height based on user window size
@@ -183,7 +183,7 @@ class App extends React.Component {
     this.state = {
       items: [],
       //hieght width
-      numberOfScreens: "two",
+      numberOfScreens: "one",
       info: true,
       screenSize: {
         //change height based on info being shown or not (+- 30px i think)
@@ -203,6 +203,10 @@ class App extends React.Component {
     this.numberOfScreens = this.numberOfScreens.bind(this);
     this.changeStream = this.changeStream.bind(this);
     this.userName = this.userName.bind(this);
+    this.renderSignIn = this.renderSignIn.bind(this);
+    this.changeGroup = this.changeGroup.bind(this);
+    this.saveGroup = this.saveGroup.bind(this);
+    this.deleteGroup = this.deleteGroup.bind(this);
   }
 
   componentDidMount() {
@@ -244,6 +248,14 @@ class App extends React.Component {
     this.setState({ info: !this.state.info });
   }
 
+  renderSignIn(data) {
+    //need user id. currently using mock data
+    this.setState({ signedIn: !this.state.signedIn });
+    this.setState({ userData: data });
+    this.setState({ userId: data.googleId });
+    this.getGroups(this.state.userId);
+  }
+
   numberOfScreens(string) {
     this.setState({ numberOfScreens: string });
   }
@@ -251,8 +263,38 @@ class App extends React.Component {
   changeStream(index, name) {
     var updatedList = this.state.savedList;
     updatedList[index] = name;
-    console.log('#####################',updatedList)
+    console.log("#####################", updatedList);
     this.setState({ savedList: updatedList });
+  }
+
+  changeGroup(array) {
+    var updateSaved = array.split(",");
+    this.setState({ savedList: updateSaved });
+    this.numberOfScreens("four");
+  }
+
+  saveGroup(name, id) {
+    let obj = {
+      userId: this.state.userId,
+      groupName: name,
+      streamers: this.state.savedList
+    };
+    axios.post("/groupList", obj).then(() => {
+      this.getGroups(this.state.userId);
+    });
+  }
+
+  getGroups(id) {
+    axios.get(`/groupList/${id}`).then(data => {
+      console.log("success groups", data);
+      this.setState({ groupNames: data.data });
+    });
+  }
+
+  deleteGroup(groupName, id) {
+    axios.delete(`/groupList/${this.state.userId}/${groupName}`).then(() => {
+      this.getGroups(this.state.userId);
+    });
   }
 
   renderScreens() {
@@ -301,6 +343,9 @@ class App extends React.Component {
         <TopBar
           numberOfScreens={this.numberOfScreens}
           showInfo={this.showInfo}
+          signedIn={this.state.signedIn}
+          renderSignIn={this.renderSignIn}
+          groupNames={this.state.groupNames} changeGroup={this.changeGroup} saveGroup={this.saveGroup} deleteGroup={this.deleteGroup} userData={this.state.userData}
         />
         {this.renderScreens()}
       </div>
