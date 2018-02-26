@@ -130,14 +130,14 @@ class TwitchPlayer extends React.Component {
   }
 
   render() {
-    return <div className="column ">
+    return <div className="column">
         {/* RIGHT HERE ACTIVE AND NOT ACTIVE*/}
-        {this.props.info ? <div className={this.state.searchState ? "dropdown is-active" : "dropdown"}>
+        {this.props.info ? <div className={this.state.searchState ? "dropdown is-active twitchOptions" : "dropdown twitchOptions"}>
             <div>
               <div className="dropdown-trigger">
                 <button onClick={() => this.setState({
                       searchState: !this.state.searchState
-                    })} className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                    })} className="button is-light" aria-haspopup="true" aria-controls="dropdown-menu">
                   <span>Streamers</span>
                   <span className="icon is-small">
                     <i className="fas fa-angle-down" aria-hidden="true" />
@@ -145,11 +145,13 @@ class TwitchPlayer extends React.Component {
                 </button>
               </div>
               <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                <div className="dropdown-content">
+                <div className="dropdown-content" id="streamerList">
                   <a className="dropdown-item">
                     <div>
-                      <input onChange={(e)=> this.setState({searchText:e.target.value})} className="input is-small" type="text" placeholder="Search" />
-                      <button onClick={() => this.changeStreamer(this.state.searchText,false)} className="button is-small">
+                      <input onChange={e => this.setState({
+                            searchText: e.target.value
+                          })} className="input is-small" type="text" placeholder="Search" />
+                      <button onClick={() => this.changeStreamer(this.state.searchText, false)} className="button is-small">
                         <span className="icon is-right">
                           <i className="fas fa-search" />
                         </span>
@@ -160,6 +162,7 @@ class TwitchPlayer extends React.Component {
                   {this.props.streamerList.map((el, index) => (
                     <a
                       className="dropdown-item"
+                      id="streamerListItem"
                       onClick={() => this.changeStreamer(el, false)}
                       className="dropdown-item"
                       id="name"
@@ -176,9 +179,9 @@ class TwitchPlayer extends React.Component {
             </span>
             <span> </span>
           </div> : <div />}
-        <div className="">
 
-        <iframe className="stream" id="twichPlayerScreen" src={`https://player.twitch.tv/?channel=${this.state.streamer}`} frameBorder="0" height={this.props.info ? this.props.screenSize[0] - 30 + "px" : this.props.screenSize[0] + 10  + "px"} width={"100%"} allowFullScreen="true" />
+        <div className={this.props.numberOfScreens}>
+          <iframe className="" src={`https://player.twitch.tv/?channel=${this.state.streamer}`} frameBorder="0" height={this.props.info ? this.props.screenSize[0] - 30 + "px" : this.props.screenSize[0] + 15 + "px"} width={"100%"} allowFullScreen="true" />
         </div>
       </div>;
   }

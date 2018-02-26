@@ -27,6 +27,7 @@ const OneScreen = props => (
         info={props.info}
         index={0}
         changeStream={props.changeStream}
+        numberOfStreams={"one"}
       />
     </div>
   </div>

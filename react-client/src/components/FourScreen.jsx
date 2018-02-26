@@ -34,7 +34,7 @@ import TwitchPlayer from './TwitchPlayer.jsx';
 
 const FourScreen = props => (
   <div className="container is-fullhd">
-    <div className="columns is-gapless is-mobile">
+    <div className="columns is-gapless is-mobile four">
       <TwitchPlayer
         screenSize={props.screenSize}
         streamerList={props.streamerList}
@@ -43,6 +43,7 @@ const FourScreen = props => (
         info={props.info}
         index={0}
         changeStream={props.changeStream}
+        numberOfStreams={"four"}
       />
       <TwitchPlayer
         screenSize={props.screenSize}
@@ -52,9 +53,10 @@ const FourScreen = props => (
         info={props.info}
         index={1}
         changeStream={props.changeStream}
+        numberOfStreams={"four"}
       />
     </div>
-        <div className="columns is-gapless is-mobile">
+    <div className="columns is-gapless is-mobile four">
       <TwitchPlayer
         screenSize={props.screenSize}
         streamerList={props.streamerList}
@@ -63,6 +65,7 @@ const FourScreen = props => (
         info={props.info}
         index={2}
         changeStream={props.changeStream}
+        numberOfStreams={"four"}
       />
       <TwitchPlayer
         screenSize={props.screenSize}
@@ -72,6 +75,7 @@ const FourScreen = props => (
         info={props.info}
         index={3}
         changeStream={props.changeStream}
+        numberOfStreams={"four"}
       />
     </div>
   </div>

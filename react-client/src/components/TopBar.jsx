@@ -6,7 +6,8 @@ class TopBar extends React.Component {
     this.state = {
       groupNameText: '',
       saveGroupBox: false,
-      dropDown: false
+      dropDown: false,
+      eyeStatus: true
     };
   this.saveGroup = this.saveGroup.bind(this)
   }
@@ -15,6 +16,32 @@ class TopBar extends React.Component {
     let groupName = this.state.groupNameText;
     this.setState({groupNameText: ''});
     this.props.saveGroup(groupName);
+  }
+
+  eye(){
+    if(this.state.eyeStatus){
+      return <button onClick={() => {
+            this.props.showInfo(), this.setState({
+                eyeStatus: !this.state.eyeStatus
+              });
+          }} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+          <span>Hide</span>
+          <span className="icon is-small">
+            <img className="far fa-eye-slash" aria-hidden="true" />
+          </span>
+        </button>;
+    } else {
+      return <button onClick={() => {
+            this.props.showInfo(), this.setState({
+                eyeStatus: !this.state.eyeStatus
+              });
+          }} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+          <span>Show</span>
+          <span className="icon is-small">
+            <img className="fas fa-hand-peace" aria-hidden="true" />
+          </span>
+        </button>;
+    }
   }
 
   middleBar(){
@@ -34,7 +61,9 @@ class TopBar extends React.Component {
             <div className="column">
               <div className={this.state.dropDown ? "dropdown is-active" : "dropdown"}>
                 <div className="dropdown-trigger">
-                  <button onClick={()=> this.setState({dropDown:!this.state.dropDown})} className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                  <button onClick={() => this.setState({
+                        dropDown: !this.state.dropDown
+                      })} className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
                     <span />
                     <span className="icon is-small">
                       <i className="fas fa-angle-down" aria-hidden="true" />
@@ -42,19 +71,39 @@ class TopBar extends React.Component {
                   </button>
                 </div>
                 <div className="dropdown-menu" id="dropdown-menu2" role="menu">
-                  <div className="dropdown-content">
+                  <div className="dropdown-content" id="dropdownBlank">
                     <div className="dropdown-item">
-                      {this.props.groupNames.map((el, index) => <div className="columns">
+                      {this.props.groupNames.map((el, index) => (
+                        <div className="columns">
                           {" "}
-                          <button className="button is-success" onClick={() => {this.props.changeGroup(el.streamers), this.setState({dropDown:!this.state.dropDown})}} key={index}>
-                            <span className="fa fa-film" /> { el.groupName}
-                          </button> <button onClick={() => {this.props.deleteGroup(el.groupName), this.setState({dropDown:!this.state.dropDown})}} className="button is-danger">
-                            {" "}
-                            <span className="fa fa-remove" /> { el.groupName}
+                          <button
+                            className="button is-success"
+                            onClick={() => {
+                              this.props.changeGroup(el.streamers),
+                                this.setState({
+                                  dropDown: !this.state.dropDown
+                                });
+                            }}
+                            key={index}
+                          >
+                            <span className="fa fa-film" /> {el.groupName}
                           </button>{" "}
-                        </div>)}
+                          <button
+                            onClick={() => {
+                              this.props.deleteGroup(el.groupName),
+                                this.setState({
+                                  dropDown: !this.state.dropDown
+                                });
+                            }}
+                            className="button is-danger"
+                          >
+                            {" "}
+                            <span className="fas fa-times-circle" />{" "}
+                            {el.groupName}
+                          </button>{" "}
+                        </div>
+                      ))}
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -111,41 +160,7 @@ class TopBar extends React.Component {
         <div className="column is-4 main">
           <div className="dropdown">
             <div className="dropdown-trigger">
-              <button onClick={() => this.props.showInfo()} className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-                <span>Hide</span>
-                <span className="icon is-small">
-                  <i className="far fa-eye-slash" aria-hidden="true" />
-                </span>
-              </button>
-            </div>
-            <div className="dropdown-menu" id="dropdown-menu3" role="menu">
-              <div className="dropdown-content">
-                <a href="#" className="dropdown-item">
-                  Overview
-                </a>
-                <a href="#" className="dropdown-item">
-                  Modifiers
-                </a>
-                <a href="#" className="dropdown-item">
-                  Grid
-                </a>
-                <a href="#" className="dropdown-item">
-                  Form
-                </a>
-                <a href="#" className="dropdown-item">
-                  Elements
-                </a>
-                <a href="#" className="dropdown-item">
-                  Components
-                </a>
-                <a href="#" className="dropdown-item">
-                  Layout
-                </a>
-                <hr className="dropdown-divider" />
-                <a href="#" className="dropdown-item">
-                  More
-                </a>
-              </div>
+            {this.eye()}
             </div>
           </div>
 
