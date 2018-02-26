@@ -31,17 +31,27 @@ body {
 .container.is-fullhd {
     background-color: black;
 }
+.screenList {
+    background-color: whitesmoke;
+
+}
+.screenListItem{
+    color: rgb(17, 175, 248)
+}
+.screenListItem:hover {
+  background-color: rgba(0, 0, 0, 0.186)
+}
 
 #streamerList{
-        background-color: rgba(0, 0, 0, .8);
-          overflow-y: scroll;
-          height: 250px;
+    background-color: rgba(0, 0, 0, .8);
+    overflow-y: scroll;
+    height: 250px;
 }
 
-#name{
+#streamerListItem{
     color:whitesmoke;
 }
-#name:hover{
+#streamerListItem:hover{
       font-weight: bold;
       color: purple;
       font-size: 110%;
@@ -51,19 +61,19 @@ body {
 }
 
 
-    .scrollable-content {
-      overflow-x:hidden;
-      overflow-y:scroll;
-    }
-    .scrollable-content::-webkit-scrollbar {
-      width:30px;
-    }
-    .scrollable-content::-webkit-scrollbar * {
-      background:transparent;
-    }
-    .scrollable-content::-webkit-scrollbar-thumb {
-      background:rgba(255,0,0,0.1) !important;
-    }
+.scrollable-content {
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+.scrollable-content::-webkit-scrollbar {
+    width:30px;
+}
+.scrollable-content::-webkit-scrollbar * {
+    background:transparent;
+}
+.scrollable-content::-webkit-scrollbar-thumb {
+    background:rgba(255,0,0,0.1) !important;
+}
 
     /* file: google-login.js
     line:3600

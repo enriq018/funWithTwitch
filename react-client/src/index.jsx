@@ -193,8 +193,8 @@ class App extends React.Component {
       },
 
       groupNames: [],
-      streamerList: ["c9sneaky", "ninja", "c9sneaky", "yoda"],
-      savedList: ["c9sneaky", "ninja", "c9sneaky", "yoda"],
+      streamerList: ["loltyler1", "drdisrespectlive", "lirik", "shroud"],
+      savedList: ["loltyler1", "drdisrespectlive", "lirik", "shroud"],
       userId: 21,
       userData: { profileObj: { name: "bob" } },
       signedIn: false

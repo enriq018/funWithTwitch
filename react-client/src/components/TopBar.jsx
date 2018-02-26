@@ -158,9 +158,7 @@ class TopBar extends React.Component {
     return <div className="columns is-mobile">
         <div className="column is-4 main">
           <div className="dropdown">
-            <div className="dropdown-trigger">
-            {this.eye()}
-            </div>
+            <div className="dropdown-trigger">{this.eye()}</div>
           </div>
 
           <div className="dropdown is-hoverable">
@@ -173,15 +171,15 @@ class TopBar extends React.Component {
               </button>
             </div>
             <div className="dropdown-menu" id="dropdown-menu4" role="menu">
-              <div className="dropdown-content">
-                <div className="dropdown-item">
-                  <a onClick={()=> this.props.numberOfScreens('one')}>One Screen</a>
+              <div className="dropdown-content screenList">
+                <div className="dropdown-item screenListItem" onClick={() => this.props.numberOfScreens("one")}>
+                  <a>One Screen</a>
                 </div>
-                <div className="dropdown-item">
-                  <a onClick={()=> this.props.numberOfScreens('two')}>Two Screens</a>
+                <div className="dropdown-item screenListItem" onClick={() => this.props.numberOfScreens("two")}>
+                  <a>Two Screens</a>
                 </div>
-                              <div className="dropdown-item">
-                  <a onClick={()=> this.props.numberOfScreens('four')}>Four Screens</a>
+                <div className="dropdown-item screenListItem" onClick={() => this.props.numberOfScreens("four")}>
+                  <a>Four Screens</a>
                 </div>
               </div>
             </div>
@@ -190,7 +188,6 @@ class TopBar extends React.Component {
         {/* Input box and dropdown to select groups*/}
         {this.middleBar()}
         {this.rightBar()}
-
       </div>;}
 }
 export default TopBar;

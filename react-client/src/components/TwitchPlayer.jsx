@@ -162,10 +162,9 @@ class TwitchPlayer extends React.Component {
                   {this.props.streamerList.map((el, index) => (
                     <a
                       className="dropdown-item"
-                      id="streamerListItem"
                       onClick={() => this.changeStreamer(el, false)}
                       className="dropdown-item"
-                      id="name"
+                      id="streamerListItem"
                       key={index}
                     >
                       {el}
