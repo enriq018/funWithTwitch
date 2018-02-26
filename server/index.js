@@ -1,16 +1,16 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+let express = require('express');
+let bodyParser = require('body-parser');
 
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database-mysql');
-var db = require('../database-mongo');
+// let items = require('../database-mysql');
+let db = require('../database-mongo');
 
-var twitchData = require('./twitchData.js');
-var request = require('request');
+let twitchData = require('./twitchData.js');
+let request = require('request');
 
-var PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 
-var app = express();
+let app = express();
 // UNCOMMENT FOR REACT
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json())
@@ -20,13 +20,13 @@ app.use(bodyParser.json())
 app.get('/', function (req, res) {
   res.status(200);
   res.send();
-  
+
 });
 
 app.get('/streamerList', (req, res) => {
 
-  var options = {
-    url: 'https://api.twitch.tv/helix/streams?first=15',
+  let options = {
+    url: 'https://api.twitch.tv/helix/streams?first=30',
     headers: {'Client-ID': '7fat6yyl6puo9pjt6eypzfciu04pyj'}
   };
   //request to twitch
