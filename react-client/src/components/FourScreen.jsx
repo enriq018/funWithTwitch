@@ -33,52 +33,69 @@ import TwitchPlayer from './TwitchPlayer.jsx';
 
 
 const FourScreen = props => (
-  <div className="container is-fullhd">
-    <div className="columns is-gapless is-mobile four">
-      <TwitchPlayer
-        screenSize={props.screenSize}
-        streamerList={props.streamerList}
-        savedList={props.savedList}
-        singleScreen={props.singleScreen}
-        info={props.info}
-        index={0}
-        changeStream={props.changeStream}
-        numberOfStreams={"four"}
-      />
-      <TwitchPlayer
-        screenSize={props.screenSize}
-        streamerList={props.streamerList}
-        savedList={props.savedList}
-        singleScreen={props.singleScreen}
-        info={props.info}
-        index={1}
-        changeStream={props.changeStream}
-        numberOfStreams={"four"}
-      />
+   <div className="container is-fullhd">
+    <div className="container is-fluid">
+    <div className="columns is-gapless is-multiline is-mobile ">
+      <div className="column is-6 ">
+        <div className="video-responsive">
+          <TwitchPlayer
+            screenSize={props.screenSize}
+            streamerList={props.streamerList}
+            savedList={props.savedList}
+            singleScreen={props.singleScreen}
+            info={props.info}
+            index={3}
+            changeStream={props.changeStream}
+            numberOfStreams={"four"}
+          />
+        </div>
+      </div>
+      <div className="column is-6 ">
+        <div className="video-responsive">
+          <TwitchPlayer
+            screenSize={props.screenSize}
+            streamerList={props.streamerList}
+            savedList={props.savedList}
+            singleScreen={props.singleScreen}
+            info={props.info}
+            index={3}
+            changeStream={props.changeStream}
+            numberOfStreams={"four"}
+          />
+        </div>
+      </div>
+      <div className="column is-6 ">
+        <div className="video-responsive">
+          <TwitchPlayer
+            screenSize={props.screenSize}
+            streamerList={props.streamerList}
+            savedList={props.savedList}
+            singleScreen={props.singleScreen}
+            info={props.info}
+            index={3}
+            changeStream={props.changeStream}
+            numberOfStreams={"four"}
+          />
+        </div>
+      </div>
+      <div className="column is-6 ">
+        <div className="video-responsive">
+          <TwitchPlayer
+            screenSize={props.screenSize}
+            streamerList={props.streamerList}
+            savedList={props.savedList}
+            singleScreen={props.singleScreen}
+            info={props.info}
+            index={3}
+            changeStream={props.changeStream}
+            numberOfStreams={"four"}
+          />
+        </div>
+      </div>
     </div>
-    <div className="columns is-gapless is-mobile four">
-      <TwitchPlayer
-        screenSize={props.screenSize}
-        streamerList={props.streamerList}
-        savedList={props.savedList}
-        singleScreen={props.singleScreen}
-        info={props.info}
-        index={2}
-        changeStream={props.changeStream}
-        numberOfStreams={"four"}
-      />
-      <TwitchPlayer
-        screenSize={props.screenSize}
-        streamerList={props.streamerList}
-        savedList={props.savedList}
-        singleScreen={props.singleScreen}
-        info={props.info}
-        index={3}
-        changeStream={props.changeStream}
-        numberOfStreams={"four"}
-      />
     </div>
-  </div>
+    </div>
 );
 
 export default FourScreen;
+

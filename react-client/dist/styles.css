@@ -60,6 +60,10 @@ body {
 
 }
 
+.container.is-fluid {
+    background-color: black;
+}
+
 
 .scrollable-content {
     overflow-x:hidden;
