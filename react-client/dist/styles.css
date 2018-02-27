@@ -1,127 +1,80 @@
-*{font-family:Sans-serif;}
-
-
-.topBar {
-	padding: 2px;
-    padding-right:0;
-    padding-left:0;
-    margin-right:auto;
-    margin-left:auto
-
-}
-
-.TwitchPlayer {
-
-}
-.main {
-	background-color: black;
-}
-
 body {
-	padding: 4px;
-	background-color: black;
+    background-color: gainsboro
 }
 
-.stream {
-	float: none;
-    margin: 0 auto;
-     display: inline-block;
+.video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 100%;
 }
 
-div.dropdown-menu{
-  background-color: black;
+.video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
-#name {
-	color: white;
+
+
+#dropdownBlank{
+   background:  rgba(10, 10, 10, .1);
 }
 
-#name:hover {
-	color: blueviolet;
-}
-
-#googleInfo {
-	color: white;
-	text-align: right;
-vertical-align: middle;
-}
-#googleInfo2 {
-  color: white;
-  text-align: center;
-vertical-align: middle;
-    font-size: 15px;
-
-}
-
-.btn-primary {
+.tag:not(body).is-info {
+    background-color: #6441a4;
     color: #fff;
-    background-color: #7d5bbe;
-    border-color: #19171c;
 }
 
-
-#pic {
-     position: absolute;
-    top: 0px;
-    right: 0px;
-        width: 40px;
-    height: 40px;
-        border-radius: 50%;
-}
-
-#logout{
-	    color: #fff;
-    background-color: #19171c;
-    border-color: #ddd;
-}
-
-#twichPlayerScreen {
-  border-style: solid;
-  border-color: purple;
-  border-width: 3px;
-}
-
-.btn-info {
-    color: #fff;
-    background-color: #7d5bbe;
-    border-color: #19171c;
-}
-
-/*.btn-secondary {
-    color: white;
+.container.is-fullhd {
     background-color: black;
-    border-color: white;
-}*/
+}
+.screenList {
+    background-color: whitesmoke;
 
-
-#google {
-  color: black;
+}
+.screenListItem{
+    color: rgb(17, 175, 248)
+}
+.screenListItem:hover {
+  background-color: rgba(0, 0, 0, 0.186)
 }
 
-element.style {
-    display: inline-block;
-    background: #6441a4;
-    color: rgb(255, 255, 255);
-    width: 190px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: Roboto;
+#streamerList{
+    background-color: rgba(0, 0, 0, .8);
+    overflow-y: scroll;
+    height: 250px;
 }
 
-#googleButtonTest {
-  background-color: black;
+#streamerListItem{
+    color:whitesmoke;
+}
+#streamerListItem:hover{
+      font-weight: bold;
+      color: purple;
+      font-size: 110%;
+
+
+
 }
 
-#topBarSpace {
 
-    padding-right:0;
-    padding-left:0;
-    margin-right:auto;
-    margin-left:auto
- 
+.scrollable-content {
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+.scrollable-content::-webkit-scrollbar {
+    width:30px;
+}
+.scrollable-content::-webkit-scrollbar * {
+    background:transparent;
+}
+.scrollable-content::-webkit-scrollbar-thumb {
+    background:rgba(255,0,0,0.1) !important;
 }
 
+    /* file: google-login.js
+    line:3600
+    GOOGLE BUTTON 3660  */

@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GoogleLogin from 'react-google-login'; 
- 
+import GoogleLogin from 'react-google-login';
+
 //  var responseGoogle = (response) => {
 //   console.log('!!!!!!!!!!!!!!!!', response);
 
 // };
- 
+
 
 class Google extends React.Component {
   constructor(props) {
     super(props);
-  
-  } 
+
+  }
   responseGoogle(data) {
     this.props.renderSignIn(data);
     // this.props.renderSignIn(data);
@@ -26,6 +26,7 @@ class Google extends React.Component {
       buttonText="Login with Google"
       onSuccess={(data) => this.responseGoogle(data)}
       onFailure={(data) => console.log('failed to login', data)}
+      id="fml"
     />
     </div>
     )
