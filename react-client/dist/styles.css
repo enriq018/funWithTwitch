@@ -17,10 +17,8 @@ body {
     position: absolute;
 }
 
-
-
-#dropdownBlank{
-   background:  rgba(10, 10, 10, .1);
+#dropdownBlank {
+    background: rgba(10, 10, 10, .1);
 }
 
 .tag:not(body).is-info {
@@ -31,52 +29,54 @@ body {
 .container.is-fullhd {
     background-color: black;
 }
+
 .screenList {
     background-color: whitesmoke;
-
 }
-.screenListItem{
+
+.screenListItem {
     color: rgb(17, 175, 248)
 }
+
 .screenListItem:hover {
-  background-color: rgba(0, 0, 0, 0.186)
+    background-color: rgba(0, 0, 0, 0.186)
 }
 
-#streamerList{
+#streamerList {
     background-color: rgba(0, 0, 0, .8);
     overflow-y: scroll;
     height: 250px;
 }
 
-#streamerListItem{
-    color:whitesmoke;
+#streamerListItem {
+    color: whitesmoke;
 }
-#streamerListItem:hover{
-      font-weight: bold;
-      color: purple;
-      font-size: 110%;
 
-
-
+#streamerListItem:hover {
+    font-weight: bold;
+    color: purple;
+    font-size: 110%;
 }
 
 .container.is-fluid {
     background-color: black;
 }
 
-
 .scrollable-content {
-    overflow-x:hidden;
-    overflow-y:scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
+
 .scrollable-content::-webkit-scrollbar {
-    width:30px;
+    width: 30px;
 }
+
 .scrollable-content::-webkit-scrollbar * {
-    background:transparent;
+    background: transparent;
 }
+
 .scrollable-content::-webkit-scrollbar-thumb {
-    background:rgba(255,0,0,0.1) !important;
+    background: rgba(255, 0, 0, 0.1) !important;
 }
 
 .modal-card-body {
@@ -91,18 +91,16 @@ body {
     padding: 30%;
 }
 
-#screensButton{
+#screensButton {
     background-color: rgb(100, 65, 164);
-    color:whitesmoke
-
+    color: whitesmoke
 }
 
-#streamSelectorButton{
+#streamSelectorButton {
     border: 2px solid rgb(100, 65, 164);
-        color:black
+    color: black
 }
 
-
-    /* file: google-login.js
+/* file: google-login.js
     line:3600
     GOOGLE BUTTON 3660  */
