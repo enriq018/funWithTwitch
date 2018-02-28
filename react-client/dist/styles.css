@@ -91,6 +91,18 @@ body {
     padding: 30%;
 }
 
+#screensButton{
+    background-color: rgb(100, 65, 164);
+    color:whitesmoke
+
+}
+
+#streamSelectorButton{
+    border: 2px solid rgb(100, 65, 164);
+        color:black
+}
+
+
     /* file: google-login.js
     line:3600
     GOOGLE BUTTON 3660  */

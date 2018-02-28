@@ -141,29 +141,19 @@ class TopBar extends React.Component {
   }
 
   streamSelector() {
-    return (
-      <div
-        className={
-          this.state.streamSelector ? "dropdown is-active" : "dropdown"
-        }
-      >
+    return <div className={this.state.streamSelector ? "dropdown is-active" : "dropdown"}>
         <div className="dropdown-trigger START!!!!!!!!!!!">
           <button
-            onClick={() =>
-              this.setState({
+          id="streamSelectorButton"
+           onClick={() => this.setState({
                 streamSelector: !this.state.streamSelector,
                 streamerOneDrop: false,
                 streamerTwoDrop: false,
                 streamerThreeDrop: false,
                 streamerFourDrop: false,
                 screensClicked: false
-              })
-            }
-            className="button"
-            aria-haspopup="true"
-            aria-controls="dropdown-menu4"
-          >
-            <span>Streamer</span>
+              })} className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+            <span>Streamers</span>
             <span className="icon is-small">
               <i className="fab fa-twitch" aria-hidden="true" />
             </span>
@@ -172,82 +162,78 @@ class TopBar extends React.Component {
         <div className="dropdown-menu" id="dropdown-menu4" role="menu">
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a
-                onClick={() =>
-                  this.setState({
+              <span>{""}</span>
+              <button className="button streamerDropdownButton" onClick={() => this.setState({
                     streamerOneDrop: true,
                     streamerTwoDrop: false,
                     streamerThreeDrop: false,
                     streamerFourDrop: false
-                  })
-                }
-              >
+                  })}>
                 {" "}
-                {`Switch stream 1 Currently:${this.props.savedList[0]}`}
-              </a>
+                <span> {`Change: ${this.props.savedList[0]}`}</span>
+                <span className="icon is-small">
+                  <i className="fas fa-share" aria-hidden="true" />
+                </span>
+              </button>
               {this.test(this.state.streamerOneDrop, 0)}
             </div>
           </div>
 
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a
-                onClick={() =>
-                  this.setState({
+              <button className="button streamerDropdownButton" onClick={() => this.setState({
                     streamerOneDrop: false,
                     streamerTwoDrop: true,
                     streamerThreeDrop: false,
                     streamerFourDrop: false
-                  })
-                }
-              >
+                  })}>
                 {" "}
-                {`Switch stream 1 Currently:${this.props.savedList[1]}`}
-              </a>
+                <span> {`Change: ${this.props.savedList[1]}`}</span>
+                <span className="icon is-small">
+                  <i className="fas fa-share" aria-hidden="true" />
+                </span>
+              </button>
               {this.test(this.state.streamerTwoDrop, 1)}
             </div>
           </div>
 
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a
-                onClick={() =>
-                  this.setState({
+              <button className="button streamerDropdownButton" onClick={() => this.setState({
                     streamerOneDrop: false,
                     streamerTwoDrop: false,
                     streamerThreeDrop: true,
                     streamerFourDrop: false
-                  })
-                }
-              >
+                  })}>
                 {" "}
-                {`Switch stream 1 Currently:${this.props.savedList[2]}`}
-              </a>
+                <span> {`Change: ${this.props.savedList[2]}`}</span>
+                <span className="icon is-small">
+                  <i className="fas fa-share" aria-hidden="true" />
+                </span>
+              </button>
               {this.test(this.state.streamerThreeDrop, 2)}
             </div>
           </div>
 
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a
-                onClick={() =>
-                  this.setState({
+              <button className="button streamerDropdownButton" onClick={() => this.setState({
                     streamerOneDrop: false,
                     streamerTwoDrop: false,
                     streamerThreeDrop: false,
                     streamerFourDrop: true
-                  })
-                }
-              >
+                  })}>
                 {" "}
-                {`Switch stream 1 Currently:${this.props.savedList[3]}`}
-              </a>
+                <span> {`Change: ${this.props.savedList[3]}`}</span>
+                <span className="icon is-small">
+                  <i className="fas fa-share" aria-hidden="true" />
+                </span>{" "}
+              </button>
               {this.test(this.state.streamerFourDrop, 3)}
             </div>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
 
   screenSelector() {
@@ -259,6 +245,7 @@ class TopBar extends React.Component {
       >
         <div className="dropdown-trigger">
           <button
+            id="screensButton"
             onClick={() =>
               this.setState({
                 screensClicked: !this.state.screensClicked,
@@ -420,34 +407,24 @@ class TopBar extends React.Component {
 
   rightBar() {
     if (this.props.signedIn) {
-      return (
-        <div className="column is-4">
+      return <div className="column is-4">
           <div className="columns is-gapless is-mobile">
             <div className="column">
               <div className="image is-48x48">
-                <img
-                  id="picture"
-                  src={this.props.userData.profileObj.imageUrl}
-                />
+                <img id="picture" src={this.props.userData.profileObj.imageUrl} />
               </div>
             </div>
 
             <div className="column">
-              <a
-                href=""
-                className="button"
-                aria-haspopup="true"
-                aria-controls="dropdown-menu3"
-              >
+              <a href="" className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
                 <span>Logout</span>
                 <span className="icon is-small">
-                  <i className="fas fa-caret-square-up" aria-hidden="true" />
+                  <i className="fas fa-sign-out-alt" aria-hidden="true" />
                 </span>
               </a>
             </div>
           </div>
-        </div>
-      );
+        </div>;
     } else {
       return (
         <div className="column is-4">
