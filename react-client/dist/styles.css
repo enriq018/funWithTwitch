@@ -60,6 +60,10 @@ body {
 
 }
 
+.container.is-fluid {
+    background-color: black;
+}
+
 
 .scrollable-content {
     overflow-x:hidden;
@@ -74,6 +78,30 @@ body {
 .scrollable-content::-webkit-scrollbar-thumb {
     background:rgba(255,0,0,0.1) !important;
 }
+
+.modal-card-body {
+    -webkit-overflow-scrolling: touch;
+    background-color: #fff;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    overflow: auto;
+    padding: 30%;
+}
+
+#screensButton{
+    background-color: rgb(100, 65, 164);
+    color:whitesmoke
+
+}
+
+#streamSelectorButton{
+    border: 2px solid rgb(100, 65, 164);
+        color:black
+}
+
 
     /* file: google-login.js
     line:3600
