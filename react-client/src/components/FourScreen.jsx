@@ -44,7 +44,7 @@ const FourScreen = props => (
             savedList={props.savedList}
             singleScreen={props.singleScreen}
             info={props.info}
-            index={3}
+            index={0}
             changeStream={props.changeStream}
             numberOfStreams={"four"}
           />
@@ -58,7 +58,7 @@ const FourScreen = props => (
             savedList={props.savedList}
             singleScreen={props.singleScreen}
             info={props.info}
-            index={3}
+            index={1}
             changeStream={props.changeStream}
             numberOfStreams={"four"}
           />
@@ -72,7 +72,7 @@ const FourScreen = props => (
             savedList={props.savedList}
             singleScreen={props.singleScreen}
             info={props.info}
-            index={3}
+            index={2}
             changeStream={props.changeStream}
             numberOfStreams={"four"}
           />

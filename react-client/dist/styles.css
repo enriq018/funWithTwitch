@@ -79,6 +79,18 @@ body {
     background:rgba(255,0,0,0.1) !important;
 }
 
+.modal-card-body {
+    -webkit-overflow-scrolling: touch;
+    background-color: #fff;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    overflow: auto;
+    padding: 30%;
+}
+
     /* file: google-login.js
     line:3600
     GOOGLE BUTTON 3660  */

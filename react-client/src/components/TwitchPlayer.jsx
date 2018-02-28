@@ -94,15 +94,15 @@ class TwitchPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      streamer: 'Shiphtur',
+      streamer: "Shiphtur",
       chat: false,
-      chatText: 'Show Chat',
+      chatText: "Show Chat",
       searchState: false,
-      searchText: '',
+      searchText: "",
       signedIn: false
     };
-   // this.addChat = this.addChat.bind(this);
-   this.changeStreamer = this.changeStreamer.bind(this);
+    // this.addChat = this.addChat.bind(this);
+    this.changeStreamer = this.changeStreamer.bind(this);
   }
 
   // getRandomInt(min, max) {
@@ -119,19 +119,40 @@ class TwitchPlayer extends React.Component {
   componentDidMount() {
     // var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
     // this.setState({streamer: this.props.savedList});
-    let streamer = this.props.savedList[this.props.index]
-    this.setState({streamer:streamer})
+    let streamer = this.props.savedList[this.props.index];
+    console.log("$$$$$$$", streamer);
+    this.setState({ streamer: streamer });
+  }
+
+  componentWillReceiveProps() {
+    // var randomStreamer = this.props.streamerList[this.getRandomInt(0, this.props.streamerList.length)];
+    // this.setState({streamer: this.props.savedList});
+    let streamer = this.props.savedList[this.props.index];
+    console.log("$$$$$$$", streamer);
+    this.setState({ streamer: streamer });
   }
 
   changeStreamer(name, hideSearch) {
     // console.log('index:', this.props.index, 'name', name)
     this.props.changeStream(this.props.index, name);
-    this.setState({streamer: name, searchState: false});
+    this.setState({ streamer: name, searchState: false });
   }
 
   render() {
-    return <iframe className="" src={`https://player.twitch.tv/?channel=${this.state.streamer}`} frameBorder="0" height={this.props.info ? this.props.screenSize[0] - 30 + "px" : this.props.screenSize[0] + 15 + "px"} width={"100%"} allowFullScreen="true" />;
-
+    return (
+      <iframe
+        className=""
+        src={`https://player.twitch.tv/?channel=${this.state.streamer}`}
+        frameBorder="0"
+        height={
+          this.props.info
+            ? this.props.screenSize[0] - 30 + "px"
+            : this.props.screenSize[0] + 15 + "px"
+        }
+        width={"100%"}
+        allowFullScreen="true"
+      />
+    );
   }
 }
 export default TwitchPlayer;
