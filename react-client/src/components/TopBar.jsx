@@ -18,10 +18,26 @@ class TopBar extends React.Component {
     };
     this.saveGroup = this.saveGroup.bind(this);
     this.changeStreamer = this.changeStreamer.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
+  handleKeyPress(event, index) {
+    console.log('enter pressed!!!!!!!!!!!!!!!!')
+    if (event.key == "Enter") {
+      this.changeStreamer(this.state.searchText, false, index), this.setState(
+          {
+            streamSelector: false,
+            streamerOneDrop: false,
+            streamerTwoDrop: false,
+            streamerThreeDrop: false,
+            streamerFourDrop: false
+          }
+        );
+    }
+  };
+
   changeStreamer(name, hideSearch, newIndex) {
-    console.log('changeStreamer TOP BAR', name)
+    console.log("changeStreamer TOP BAR", name);
     // console.log('index:', this.props.index, 'name', name)
     this.setState({ streamer: name, searchState: false });
     this.props.changeStream(newIndex, name);
@@ -60,6 +76,7 @@ class TopBar extends React.Component {
                 <a className="dropdown-item">
                   <div>
                     <input
+                    onKeyPress={(e)=> this.handleKeyPress(e, index)}
                       onChange={e =>
                         this.setState({
                           searchText: e.target.value
@@ -70,9 +87,20 @@ class TopBar extends React.Component {
                       placeholder="Search"
                     />
                     <button
-                      onClick={() =>
-                        this.changeStreamer(this.state.searchText, false, index)
-                      }
+                      onClick={() => {
+                        this.changeStreamer(
+                          this.state.searchText,
+                          false,
+                          index
+                        ),
+                          this.setState({
+                            streamSelector: false,
+                            streamerOneDrop: false,
+                            streamerTwoDrop: false,
+                            streamerThreeDrop: false,
+                            streamerFourDrop: false
+                          });
+                      }}
                       className="button is-small"
                     >
                       <span className="icon is-right">
@@ -85,15 +113,16 @@ class TopBar extends React.Component {
                 {this.props.streamerList.map((el, i) => (
                   <a
                     className="dropdown-item"
-                    onClick={() => {this.changeStreamer(el, false, index), this.setState(
-                                        {
-                                          streamSelector: false,
-                                          streamerOneDrop: false,
-                                          streamerTwoDrop: false,
-                                          streamerThreeDrop: false,
-                                          streamerFourDrop: false
-                                        }
-                                      );}}
+                    onClick={() => {
+                      this.changeStreamer(el, false, index),
+                        this.setState({
+                          streamSelector: false,
+                          streamerOneDrop: false,
+                          streamerTwoDrop: false,
+                          streamerThreeDrop: false,
+                          streamerFourDrop: false
+                        });
+                    }}
                     className="dropdown-item"
                     id="streamerListItem"
                     key={i}
@@ -112,31 +141,47 @@ class TopBar extends React.Component {
   }
 
   streamSelector() {
-    return <div className={this.state.streamSelector ? "dropdown is-active" : "dropdown"}>
+    return (
+      <div
+        className={
+          this.state.streamSelector ? "dropdown is-active" : "dropdown"
+        }
+      >
         <div className="dropdown-trigger START!!!!!!!!!!!">
-          <button onClick={() => this.setState({
+          <button
+            onClick={() =>
+              this.setState({
                 streamSelector: !this.state.streamSelector,
                 streamerOneDrop: false,
                 streamerTwoDrop: false,
                 streamerThreeDrop: false,
                 streamerFourDrop: false,
                 screensClicked: false
-              })} className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+              })
+            }
+            className="button"
+            aria-haspopup="true"
+            aria-controls="dropdown-menu4"
+          >
             <span>Streamer</span>
             <span className="icon is-small">
-              <i className="fas fa-th-large" aria-hidden="true" />
+              <i className="fab fa-twitch" aria-hidden="true" />
             </span>
           </button>
         </div>
         <div className="dropdown-menu" id="dropdown-menu4" role="menu">
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a onClick={() => this.setState({
+              <a
+                onClick={() =>
+                  this.setState({
                     streamerOneDrop: true,
                     streamerTwoDrop: false,
                     streamerThreeDrop: false,
                     streamerFourDrop: false
-                  })}>
+                  })
+                }
+              >
                 {" "}
                 {`Switch stream 1 Currently:${this.props.savedList[0]}`}
               </a>
@@ -146,12 +191,16 @@ class TopBar extends React.Component {
 
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a onClick={() => this.setState({
+              <a
+                onClick={() =>
+                  this.setState({
                     streamerOneDrop: false,
                     streamerTwoDrop: true,
                     streamerThreeDrop: false,
                     streamerFourDrop: false
-                  })}>
+                  })
+                }
+              >
                 {" "}
                 {`Switch stream 1 Currently:${this.props.savedList[1]}`}
               </a>
@@ -161,12 +210,16 @@ class TopBar extends React.Component {
 
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a onClick={() => this.setState({
+              <a
+                onClick={() =>
+                  this.setState({
                     streamerOneDrop: false,
                     streamerTwoDrop: false,
                     streamerThreeDrop: true,
                     streamerFourDrop: false
-                  })}>
+                  })
+                }
+              >
                 {" "}
                 {`Switch stream 1 Currently:${this.props.savedList[2]}`}
               </a>
@@ -176,12 +229,16 @@ class TopBar extends React.Component {
 
           <div className="dropdown-content screenList HERE!!!!!!!!!!!!!!!!!!!">
             <div className="dropdown-item screenListItem">
-              <a onClick={() => this.setState({
+              <a
+                onClick={() =>
+                  this.setState({
                     streamerOneDrop: false,
                     streamerTwoDrop: false,
                     streamerThreeDrop: false,
                     streamerFourDrop: true
-                  })}>
+                  })
+                }
+              >
                 {" "}
                 {`Switch stream 1 Currently:${this.props.savedList[3]}`}
               </a>
@@ -189,7 +246,8 @@ class TopBar extends React.Component {
             </div>
           </div>
         </div>
-      </div>;
+      </div>
+    );
   }
 
   screenSelector() {
@@ -203,7 +261,8 @@ class TopBar extends React.Component {
           <button
             onClick={() =>
               this.setState({
-                screensClicked: !this.state.screensClicked, streamSelector:false
+                screensClicked: !this.state.screensClicked,
+                streamSelector: false
               })
             }
             className="button"
