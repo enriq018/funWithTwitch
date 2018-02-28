@@ -318,13 +318,8 @@ class App extends React.Component {
     } else if (numberOfScreens === "four") {
       return (
         <FourScreen
-          screenSize={this.state.screenSize.four}
-          streamerList={this.state.streamerList}
           savedList={this.state.savedList}
-          singleScreen={false}
-          info={this.state.info}
-          changeStream={this.changeStream}
-          numberOfScreens={"four"}
+
         />
       );
     } else {
