@@ -13,7 +13,6 @@ const FourScreen = props => (
         <div className="column is-6 ">
           <div className="video-responsive">
             <TwitchPlayer savedList={props.savedList} index={1} />
-            />
           </div>
         </div>
         <div className="column is-6 ">
